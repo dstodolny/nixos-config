@@ -1,0 +1,91 @@
+#!/bin/sh
+
+usage() {
+	cat <<EOF>&2
+Usage: ${0##*/}
+
+Sync home folder.
+
+Options:
+
+  -p:        Push upstream.
+
+EOF
+	exit
+}
+
+OPT_UPDATE=false
+while getopts ":h:p" opt; do
+	case $opt in
+	h)
+		usage
+		exit ;;
+	p)
+		OPT_UPDATE=true ;;
+	\?)
+		usage
+		exit 1 ;;
+	esac
+done
+
+shift $(($OPTIND - 1))
+
+PERSONAL_FOLDER="$HOME/personal"
+[ -z "$XDG_CONFIG_HOME" ] && XDG_CONFIG_HOME="$HOME/.config"
+[ -z "$XDG_DATA_HOME" ] && XDG_DATA_HOME="$HOME/.local/share"
+
+RED='\033[0;31m\033[1m'
+GREEN='\033[0;32m\033[1m'
+YELLOW='\033[0;33m\033[1m'
+BOLD='\033[0m\033[1m'
+NORMAL='\033[0m'
+
+section() {
+	echo -e "$GREEN==> $@$NORMAL"
+}
+message() {
+	echo -e "$YELLOW:: $@$NORMAL"
+}
+
+section "$HOME/.package-lists"
+package-lister
+
+if [ -f ~/.cache/emacs/eshell/history ]; then
+	section "Shell history"
+	mkdir -pv ~/personal/history/
+	rm -vf ~/personal/history/eshell.gpg
+	gpg --output ~/personal/history/eshell.gpg --recipient d@dmk.st --encrypt ~/.cache/emacs/eshell/history
+fi
+
+project_status() {
+	local path=$1
+	local title=$2
+	local body=$3
+
+	[ -z "$body" ] && return
+
+	if $CHANGED; then
+		section "$path"
+		CHANGED=false
+	fi
+	message "$title"
+	echo "$body"
+}
+
+for i in ~/dotfiles ~/.password-store ~/personal ~/projects/* "$@"; do
+	[ ! -d "$i/.git" ] && continue
+	CHANGED=true
+	push=$(git -C "$i" rev-parse --abbrev-ref --symbolic-full-name @{push} 2>&1)
+	if [ $? -eq 0 ]; then
+		unmerged=$(git -C "$i" log --oneline  "$push"..)
+		project_status "$i" "Unpushed commits" "$unmerged"
+	else
+		project_status "$i" "Unpushed commits" "No 'push' remote"
+	fi
+	project_status "$i" "Unstaged files" "$(git -C "$i" diff --name-only)"
+	project_status "$i" "Staged files" "$(git -C "$i" diff --name-only --cached)"
+	if $OPT_UPDATE && [ -n "$unmerged" ]; then
+		message "Pushing"
+		git -C "$i" push
+	fi
+done

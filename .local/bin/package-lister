@@ -1,0 +1,29 @@
+#!/bin/sh
+
+## Create lists of system packages.
+
+## Variables
+PKG_ROOT="$HOME/.package-lists"
+mkdir -p "$PKG_ROOT"
+
+if command -v guix >/dev/null 2>&1; then
+	guile -s ~/.config/guix/profile-to-manifest.scm ~/.guix-profile >"$PKG_ROOT/guix-manifest.scm"
+fi
+
+YELLOW='\033[0;33m\033[1m'
+BOLD='\033[0m\033[1m'
+NORMAL='\033[0m'
+message() {
+	echo -e "$YELLOW:: $@$NORMAL"
+}
+status() {
+	local title=$1
+	local body=$2
+
+	[ -z "$body" ] && return
+	message "$title"
+	echo "$body"
+}
+
+status "Unpushed files" "$(git -C "$PKG_ROOT" diff --cached --name-only .)"
+status "Unstaged files" "$(git -C "$PKG_ROOT" diff --name-only .)"

@@ -1,0 +1,21 @@
+#-*- shell-script -*-
+
+# Increase volume
+"pactl set-sink-volume @DEFAULT_SINK@ +2%"
+  XF86AudioRaiseVolume
+
+# Decrease volume
+"pactl set-sink-volume @DEFAULT_SINK@ -2%"
+  XF86AudioLowerVolume
+
+# Mute volume
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  XF86AudioMute
+
+# Increase backlight
+"light -A 20"
+  XF86MonBrightnessUp
+
+# Decrease backlight
+"light -U 20"
+  XF86MonBrightnessDown

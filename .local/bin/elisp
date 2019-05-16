@@ -1,0 +1,51 @@
+#!/bin/sh
+
+usage () {
+	cat <<EOF>&2
+Usage: ${0##*/} [OPTIONS] SCRIPT [ARGS...]
+
+Run Emacs Lisp SCRIPT.
+
+Options:
+
+  -b: Byte-compile before running.
+  -c: Remove byte code once finished.
+EOF
+}
+
+OPT_BYTE=false
+OPT_CLEAN=false
+while getopts :bc OPT; do
+	case $OPT in
+	b)
+		OPT_BYTE=true ;;
+	c)
+		OPT_CLEAN=true ;;
+	\?)
+		usage
+		exit 1 ;;
+	esac
+done
+
+shift $((OPTIND - 1))
+if [ $# -eq 0 ]; then
+	usage
+	exit 1
+fi
+
+if ! command -v emacs >/dev/null 2>&1; then
+	echo >&2 'emacs not found'
+	exit 1
+fi
+
+script="$1"
+if $OPT_BYTE && [ "${0##*.}" = "el" ]; then
+	script="${1%.*}.elc"
+	emacs -Q --batch -f batch-byte-compile "$1" 2>/dev/null
+fi
+shift
+
+emacs -Q --script "$script" "$@" 2>&1
+status=$?
+$OPT_CLEAN && rm "$script"
+exit $status

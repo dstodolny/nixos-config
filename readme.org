@@ -1,0 +1,6 @@
+#+TITLE: .dotfiles
+
+* License
+
+Unless stated otherwise, all files are under the GPL3 license.
+See COPYING for the full license.

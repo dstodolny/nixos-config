@@ -1,0 +1,50 @@
+#!/bin/sh
+
+usage () {
+	cat <<EOF>&2
+Usage: ${0##*/} [OPERATION]
+
+When no OPERATION is specified, reset the screen to the defaults.
+
+Apply OPERATION to the X screen renderer:
+
+  multi VIDEOPORT
+  starwars
+  zoomin
+  zoomout
+
+EOF
+}
+
+current=$(xrandr | sed -n "/current/{n;p;q}" | cut -f1 -d" ")
+## Other unreliable options:
+# xrandr | grep -m1 "\<connected\>" | cut -f1 -d" "
+# xrandr | awk 'NR==2 {print $1; exit}'
+
+if [ $# -eq 0 ]; then
+	xrandr --output "$current" --auto --transform none --brightness 1 && \
+		xrandr -s "$(xrandr | awk '/^ / {print $1;exit}')"
+	exit
+fi
+
+case "$1" in
+multi)
+	[ $# -lt 2 ] && usage && exit 1
+	xrandr --output "$2" --auto --right-of "$current" ;;
+starwars)
+	xrandr --output "$current" --transform 1.24,0.16,-124,0,1.24,0,0,0.000316,1 ;;
+zoomin)
+	xrandr --output "$current" --scale 0.8x0.8 ;;
+zoomout)
+	xrandr --output "$current" --scale 1.2x1.2 ;;
+*)
+	usage;;
+esac
+
+## Old code.
+# xscreen () {
+# 	## Does not work?
+# 	cvt $1 $2
+# 	echo  "$(cvt $1 $2 | tail -1 | cut -d' ' -f2-)"
+# 	xrandr --newmode "$(cvt $1 $2 | tail -1 | cut -d' ' -f2-)"
+# }
