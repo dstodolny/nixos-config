@@ -1,4 +1,4 @@
-;; commit: fbeb92d7607dc1dc6c3a34a536352636274a69de
+;; commit: c72c10053dfdf76a148725fc3ff6a67c4144b778
 (specifications->manifest
   '("bluez"
     "bzip2"

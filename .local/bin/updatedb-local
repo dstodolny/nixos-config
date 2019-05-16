@@ -1,0 +1,38 @@
+#!/bin/sh
+
+HOME_DB_FOLDER="$HOME/.cache"
+DB_FILE="locate.db"
+
+if [ "$1" = "-h" ]; then
+	cat <<EOF>&2
+Usage: ${0##*/} [FOLDERS]
+
+Update the 'locate' databases for the home folder, external drives and the FOLDERS arguments.
+
+For external drives, databases are only updated if found, they are not
+automatically created (unless explicitly specified in the FOLDERS arguments).
+
+- The database for the home folder is store in '$HOME_DB_FOLDER/$DB_FILE'.
+- Other databases are stored in '$MEDIA_DB' at the target root.
+
+EOF
+	exit
+fi
+
+update() {
+	[ $# -ne 2 ] && set -- "$1" "$1/locate.db"
+	echo >&2 "Updating '$2' database for '$1'..."
+	## From https://git.archlinux.org/svntogit/packages.git/tree/trunk/updatedb.conf?h=packages/mlocate.
+	updatedb -l 0 -o "$2" -U "$1" \
+		--prune-bind-mounts=1 \
+		--prunefs="9p afs anon_inodefs auto autofs bdev binfmt_misc cgroup cifs coda configfs cpuset cramfs debugfs devpts devtmpfs ecryptfs exofs ftpfs fuse fuse.encfs fuse.sshfs fusectl gfs gfs2 hugetlbfs inotifyfs iso9660 jffs2 lustre mqueue ncpfs nfs nfs4 nfsd pipefs proc ramfs rootfs rpc_pipefs securityfs selinuxfs sfs shfs smbfs sockfs sshfs sysfs tmpfs ubifs udf usbfs vboxsf" \
+		--prunepaths="/gnu/store /afs /mnt /net /sfs /tmp /udev /var/cache /var/lib/pacman/local /var/lock /var/run /var/spool /var/tmp" \
+		--prunenames=".git .hg .svn .cache Trash .Trash-$(id -u)"
+}
+
+update "/" "$HOME_DB_FOLDER/$DB_FILE"
+
+## Create database for the specified folders.
+for i; do
+	[ -d "$i" ] && update "$i"
+done

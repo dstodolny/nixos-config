@@ -42,6 +42,13 @@ prependpath "${HOME}/personal/hackpool"
 ## Last PATH entries.
 appendpath "${HOME}/.local/bin"
 
+## mcron: needs to be run after PATH is fully set or else local programs could
+## be missing.
+if command -v mcron >/dev/null 2>&1; then
+	# TODO: Only start if not already started?
+	# pkill mcron
+	mcron &
+
 ## Remove less history.
 LESSHISTFILE='-'
 
