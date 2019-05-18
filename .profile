@@ -48,6 +48,7 @@ if command -v mcron >/dev/null 2>&1; then
 	# TODO: Only start if not already started?
 	# pkill mcron
 	mcron &
+fi
 
 ## Remove less history.
 LESSHISTFILE='-'
@@ -94,6 +95,9 @@ export VISUAL
 
 ## Node
 export NODE_PATH="/home/dom/.guix-profile/lib/node_modules${NODE_PATH:+:}$NODE_PATH"
+
+## Guix locale
+export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 
 ## Hook. Should be sourced last
 [ -f ~/.profile_hook ] && . ~/.profile_hook
