@@ -1,15 +1,21 @@
 (use-modules (gnu)
 						 (gnu system nss)
 						 (gnu services xorg)
+						 (gnu services networking)
 						 (gnu packages linux)
+						 (gnu packages emacs-xyz)
 						 (gnu packages security-token)
 						 (gnu services security-token))
 
 (use-service-modules desktop)
-(use-package-modules bootloaders certs suckless base idutils)
+(use-package-modules gnome certs idutils)
 
 (define %user-name "dnixty")
 (define %hostname "heimdall")
+(define %heimdall-host-aliases "\
+192.168.1.18  asgard
+192.168.1.1   niflheim
+192.168.1.215 midgard\n\n")
 
 ;; Allow members of the "video" group to change the screen brightness.
 (define %backlight-udev-rule
@@ -56,11 +62,10 @@
 											(slim-configuration
 											 (inherit config)
 											 (auto-login? #f)
-											 (startx (xorg-start-command
-																#:configuration-file
-																(xorg-configuration-file
-																 #:extra-config
-																 (list %heimdall/xorg-touchpad))))))))
+											 (xorg-configuration
+												(xorg-configuration
+												 (extra-config (list %heimdall/xorg-touchpad))))
+											 (default-user %user-name)))))
 
 (define %heimdall/sudoers
 	(plain-file "sudoers" "\
@@ -68,14 +73,6 @@ Defaults umask=0022
 Defaults umask_override
 root ALL=(ALL) ALL
 %wheel ALL=(ALL) NOPASSWD:ALL\n"))
-
-(define %heimdall/hosts
-	(plain-file "hostnames" "\
-127.0.0.1     localhost heimdall
-::1           localhost heimdall
-192.168.1.18  asgard
-192.168.1.1   niflheim
-192.168.1.215 midgard"))
 
 (operating-system
  (host-name %hostname)
@@ -95,48 +92,54 @@ root ALL=(ALL) ALL
          (target "crypthome")
          (type luks-device-mapping))))
 
-  (file-systems (cons* (file-system
-												(device (file-system-label "root"))
-												(mount-point "/")
-                        (type "ext4"))
-                       (file-system
-                        (device (file-system-label "boot"))
-                        (mount-point "/boot")
-                        (type "ext4"))
-                       (file-system
-                        (device "/dev/mapper/crypthome")
-                        (mount-point "/home")
-                        (type "ext4")
-                        (dependencies mapped-devices))
-                       %base-file-systems))
+ (file-systems (cons* (file-system
+											 (device (file-system-label "root"))
+											 (mount-point "/")
+											 (type "ext4"))
+											(file-system
+											 (device (file-system-label "boot"))
+											 (mount-point "/boot")
+											 (type "ext4"))
+											(file-system
+											 (device "/dev/mapper/crypthome")
+											 (mount-point "/home")
+											 (type "ext4")
+											 (dependencies mapped-devices))
+											%base-file-systems))
 
-  (swap-devices '("/dev/nvme0n1p4"))
+ (swap-devices '("/dev/nvme0n1p4"))
 
-  (users (cons (user-account
-								(name %user-name)
-                (comment "Dominik Stodolny")
-                (group "users")
+ (users (cons (user-account
+							 (name %user-name)
+							 (comment "Dominik Stodolny")
+							 (uid 1000)
+							 (group "users")
 
-                (supplementary-groups '("wheel" "netdev"
-																				"audio" "video"
-																				"lp"))
-                (home-directory (string-append "/home/" %user-name)))
-               %base-user-accounts))
+							 (supplementary-groups '("wheel" "netdev"
+																			 "audio" "video"
+																			 "lp"))
+							 (home-directory (string-append "/home/" %user-name)))
+							%base-user-accounts))
 
-	(sudoers-file %heimdall/sudoers)
-	(hosts-file %heimdall/hosts)
+ (sudoers-file %heimdall/sudoers)
+ (hosts-file
+	(plain-file "hosts"
+							(string-append (local-host-aliases host-name)
+														 %heimdall-host-aliases
+														 %facebook-host-aliases)))
 
-  (packages (cons* nss-certs
-									 pcsc-lite
-									 ccid
-									 %base-packages))
+ (packages (cons* nss-certs
+									pcsc-lite
+									ccid
+									emacs-exwm
+									%base-packages))
 
-	(services (cons*
-						 (bluetooth-service)
-						 (service pcscd-service-type
-											(pcscd-configuration
-											 (pcsc-lite pcsc-lite)
-											 (usb-drivers (list ccid))))
-						 %heimdall/services))
+ (services (cons*
+						(bluetooth-service)
+						(service pcscd-service-type
+										 (pcscd-configuration
+											(pcsc-lite pcsc-lite)
+											(usb-drivers (list ccid))))
+						%heimdall/services))
 
-  (name-service-switch %mdns-host-lookup-nss))
+ (name-service-switch %mdns-host-lookup-nss))
