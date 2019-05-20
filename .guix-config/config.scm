@@ -3,6 +3,7 @@
 						 (gnu services xorg)
 						 (gnu services networking)
 						 (gnu packages linux)
+						 (gnu packages bash)
 						 (gnu packages emacs-xyz)
 						 (gnu packages security-token)
 						 (gnu services security-token))
@@ -140,6 +141,10 @@ root ALL=(ALL) ALL
 										 (pcscd-configuration
 											(pcsc-lite pcsc-lite)
 											(usb-drivers (list ccid))))
+						(extra-special-file "/usr/bin/env"
+																(file-append coreutils "/bin/env"))
+						(extra-special-file "/usr/bin/bash"
+																(file-append bash "/bin/bash"))
 						%heimdall/services))
 
  (name-service-switch %mdns-host-lookup-nss))
