@@ -1,4 +1,4 @@
-;; commit: c72c10053dfdf76a148725fc3ff6a67c4144b778
+;; commit: ce7a966295d541f4f804e9579ad99aba052c19c4
 (specifications->manifest
   '("bluez"
     "bzip2"
@@ -72,7 +72,7 @@
     "make"
     "man-pages"
     "mlocate"
-    "node"
+    "node-lts"
     "openssh"
     "password-store"
     "pinentry-emacs"
