@@ -42,6 +42,9 @@ prependpath "${HOME}/personal/hackpool"
 ## Last PATH entries.
 appendpath "${HOME}/.local/bin"
 
+## Node
+appendpath "${HOME}/.vnode/bin"
+
 ## mcron: needs to be run after PATH is fully set or else local programs could
 ## be missing.
 if command -v mcron >/dev/null 2>&1; then
@@ -92,9 +95,6 @@ VISUAL="$EDITOR"
 [ "$VISUAL" = em ] && VISUAL=emw
 export GIT_EDITOR
 export VISUAL
-
-## Node
-export NODE_PATH="/home/dom/.guix-profile/lib/node_modules${NODE_PATH:+:}$NODE_PATH"
 
 ## Guix locale
 export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
