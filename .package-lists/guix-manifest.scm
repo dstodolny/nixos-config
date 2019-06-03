@@ -1,7 +1,8 @@
-;; commit: ce7a966295d541f4f804e9579ad99aba052c19c4
+;; commit: 18919cf9289764de69035bfcd0f0456864f91c02
 (specifications->manifest
   '("bluez"
     "bzip2"
+    "chromium"
     "conky"
     "cryptsetup"
     "curl"
@@ -72,11 +73,13 @@
     "make"
     "man-pages"
     "mlocate"
-    "node-lts"
+    "nix"
+    "node"
     "openssh"
     "password-store"
     "pinentry-emacs"
     "pulseaudio"
+    "sbcl-next"
     "setxkbmap"
     "stow"
     "sxiv"
