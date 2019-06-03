@@ -15,6 +15,8 @@
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
 
+(setq tide-tsserver-executable "~/.vnode/bin/tsserver")
+
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
 (add-hook 'web-mode-hook
           (lambda ()
