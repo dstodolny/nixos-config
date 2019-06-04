@@ -21,5 +21,5 @@ conky.text =
 ^fg(\#195466)↓^fg(\#33859e)${downspeedf wlp1s0} \
 ^fg(\#195466)↑^fg(\#33859e)${upspeedf wlp1s0} \
 ${if_match "${exec pactl list sinks | awk '/^\tMute:/ {print $2;exit}'}" == "no"}^fg(\#195466)♪^fg(\#33859e)${exec pactl list sinks | awk '/^\tVolume:/ {print $5;exit}'}${endif} \
-${if_match ${battery_percent BAT}!=0}^fg(\#195466)⚡^fg(\#33859e)${if_match ${battery_time BAT}<=600}^fg(\#c23127)${endif}${battery_short BAT}: ${format_time ${battery_time BAT} "(\dd )(\hh )\mmin"} ${endif}\
+${if_match ${battery_percent BAT}!=0}^fg(\#195466)⚡^fg(\#33859e)${if_match ${battery_percent BAT}<=15}^fg(\#c23127)${endif}${battery_short BAT}${endif}\
 ]]
