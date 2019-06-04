@@ -136,7 +136,7 @@
                         'face `(:foreground ,(if (= (user-uid) 0) "#d26937" "#edb443")))
             (or (magit-get-current-branch) (magit-get-current-tag))))
        (format
-        (propertize "[%s]" 'face '(:weight bopld))
+        (propertize "[%s]" 'face '(:weight bold))
         (propertize path 'face `(:foreground ,(if (= (user-uid) 0) "#c23127" "#2aa889") :weight bold))))
      (propertize "\n>" 'face '(:weight bold))
      " ")))
