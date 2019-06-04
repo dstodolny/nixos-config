@@ -1,4 +1,4 @@
-;; commit: 18919cf9289764de69035bfcd0f0456864f91c02
+;; commit: 05947d92b65dd13a8b593e1bdde3dd76b11211c2
 (specifications->manifest
   '("bluez"
     "bzip2"
@@ -76,6 +76,7 @@
     "nix"
     "node"
     "openssh"
+    "pass-otp"
     "password-store"
     "pinentry-emacs"
     "pulseaudio"
