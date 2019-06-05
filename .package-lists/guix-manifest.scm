@@ -1,10 +1,12 @@
-;; commit: 05947d92b65dd13a8b593e1bdde3dd76b11211c2
+;; commit: a85d3fb07f66469f291f187658082b9b8b08bdc4
 (specifications->manifest
   '("bluez"
     "bzip2"
     "chromium"
     "conky"
     "cryptsetup"
+    "cups-filters"
+    "cups-minimal"
     "curl"
     "dtach"
     "dzen"
