@@ -2,6 +2,8 @@
 						 (gnu system nss)
 						 (gnu services xorg)
 						 (gnu services networking)
+						 (gnu services cups)
+						 (gnu packages cups)
 						 (gnu packages linux)
 						 (gnu packages bash)
 						 (gnu packages emacs-xyz)
@@ -141,6 +143,11 @@ root ALL=(ALL) ALL
 										 (pcscd-configuration
 											(pcsc-lite pcsc-lite)
 											(usb-drivers (list ccid))))
+						(service cups-service-type
+										 (cups-configuration
+											(web-interface? #t)
+											(extensions
+											 (list cups-filters hplip-minimal))))
 						(extra-special-file "/usr/bin/env"
 																(file-append coreutils "/bin/env"))
 						(extra-special-file "/usr/bin/bash"
