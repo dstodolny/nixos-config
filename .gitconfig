@@ -17,8 +17,7 @@
 	lol =  log --graph --decorate --pretty=format:'%C(yellow)%h %Cgreen%cd%C(bold red)%d%Creset %s' --abbrev-commit --date=short
 	m = mergetool
 	r = remote -v
-	st = status -uno
-	su = status -uno -u
+	st = status -uno -u
 
 [tar "tar.xz"]
 	command = xz -c
