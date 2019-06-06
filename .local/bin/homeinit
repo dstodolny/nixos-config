@@ -132,17 +132,23 @@ if inpath emacs; then
   yes | emacs --batch -l ~/.emacs.d/init.el --eval '(progn (package-refresh-contents) (package-install-selected-packages))'
 fi
 
-# section "Node version management"
-# if ! inpath n; then
-# 	curl -L https://git.io/n-install | bash
-# else
-# 	curl -L https://git.io/n-update | bash
-# fi
+section "Node.js"
+if inpath npm; then
+	mkdir -pv "$HOME/.vnode"
+	npm config set prefix "$HOME/.vnode"
+	npm install -g npm
+fi
 
-# if [ -x ~/.local/bin/updatedb-local ]; then
-# 	section "locate db"
-# 	~/.local/bin/updatedb-local
-# fi
+section "Nix"
+if inpath nix; then
+	sudo mkdir -pv /nix
+	sudo chown -R "$(whoami)" /nix
+fi
+
+if [ -x ~/.local/bin/updatedb-local ]; then
+	section "locate db"
+	~/.local/bin/updatedb-local
+fi
 
 if [ -f ~/personal/history/eshell.gpg ]; then
 	section "Shell history"
