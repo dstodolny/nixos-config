@@ -29,4 +29,15 @@
         (call-interactively 'debbugs-gnu)
       (debbugs-gnu severities packages archivedp suppress tags))))
 
+(defun dnixty/guix-generations-list-diff-this ()
+  "List guix-generation-list-diff but compare generation at point
+with previous."
+  (interactive)
+  (let ((diff-fun #'guix-diff)
+        (gen-fun #'guix-profile-generation-packages-buffer))
+    (funcall diff-fun
+             (funcall gen-fun (1- (bui-list-current-id)))
+             (funcall gen-fun (bui-list-current-id)))))
+(define-key guix-generation-list-mode-map "=" #'dnixty/guix-generations-list-diff-this)
+
 (provide 'init-guix)
