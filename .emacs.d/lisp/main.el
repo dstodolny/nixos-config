@@ -238,6 +238,8 @@
     ;; Don't save crytped files since they can't be restored.
     (setq desktop-files-not-to-save
           (concat (substring desktop-files-not-to-save 0 -2) "\\|" (regexp-quote ".gpg") "\\'\\)"))
+    ;; Or don't save any file, for faster startup and less problems.
+    (setq desktop-files-not-to-save ".")
     ;; Discarding PDFs and images makes it lighter.
     (add-to-list 'desktop-modes-not-to-save 'pdf-view-mode)
     (add-to-list 'desktop-modes-not-to-save 'image-mode)
