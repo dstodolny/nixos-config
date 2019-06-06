@@ -1,4 +1,4 @@
-;; commit: a85d3fb07f66469f291f187658082b9b8b08bdc4
+;; commit: 8758086d2d25f2e58354febc3f01af586d0ee416
 (specifications->manifest
   '("bluez"
     "bzip2"
@@ -41,12 +41,14 @@
     "emacs-hl-todo"
     "emacs-iedit"
     "emacs-js2-mode"
+    "emacs-ledger-mode"
     "emacs-lispy"
     "emacs-lispyville"
     "emacs-lua-mode"
     "emacs-magit"
     "emacs-magit-todos"
     "emacs-markdown-mode"
+    "emacs-nix-mode"
     "emacs-org"
     "emacs-org-bullets"
     "emacs-org-contrib"
@@ -61,6 +63,7 @@
     "emacs-tide"
     "emacs-typescript-mode"
     "emacs-undo-tree"
+    "emacs-w3m"
     "emacs-web-mode"
     "emacs-ztree"
     "font-dejavu"
@@ -81,6 +84,7 @@
     "password-store"
     "pinentry-emacs"
     "pulseaudio"
+    "redshift"
     "sbcl-next"
     "setxkbmap"
     "stow"
