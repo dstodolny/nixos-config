@@ -62,6 +62,10 @@
 	(add-hook hook 'dnixty/turn-off-line-number-mode)
 	(add-hook hook 'display-line-numbers-mode))
 (setq display-line-numbers-type 'visual)
+(defun dnixty/turn-on-absolute-line-number ()
+  (setq display-line-numbers-type t))
+(setq auto-revert-interval 1)
+(add-hook 'auto-revert-tail-mode-hook 'dnixty/turn-on-absolute-line-number)
 
 ;;; Alternative scrolling
 (setq scroll-error-top-bottom t)
