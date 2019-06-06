@@ -21,7 +21,9 @@
  org-priority-start-cycle-with-default nil
  org-default-priority 67
  ;; Org-mode aligns text.
- indent-tabs-mode nil)
+ indent-tabs-mode nil
+ org-cycle-separator-lines 0
+ org-catch-invisible-edits 'smart)
 
 ;;; Agendas.
 (add-to-list 'org-agenda-files "~/personal/todo/todo.org.gpg")
