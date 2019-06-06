@@ -6,7 +6,7 @@
              (gnu packages cups)
              (gnu packages linux)
              (gnu packages bash)
-   			     (gnu packages emacs-xyz)
+             (gnu packages emacs-xyz)
              (gnu packages security-token)
              (gnu services security-token))
 
@@ -91,26 +91,22 @@ root ALL=(ALL) ALL
 
  (mapped-devices
   (list (mapped-device
-         (source "/dev/nvme0n1p3")
-         (target "crypthome")
+         (source "/dev/nvme0n1p2")
+         (target "cryptroot")
          (type luks-device-mapping))))
 
  (file-systems (cons* (file-system
-                       (device (file-system-label "root"))
+                       (device "/dev/mapper/cryptroot")
                        (mount-point "/")
-                       (type "ext4"))
-                      (file-system
-                       (device (file-system-label "boot"))
-                       (mount-point "/boot")
-                       (type "ext4"))
-                      (file-system
-                       (device "/dev/mapper/crypthome")
-                       (mount-point "/home")
                        (type "ext4")
-                       (dependencies mapped-devices))
+                         (dependencies mapped-devices))
+                      (file-system
+                       (device "none")
+                       (mount-point "/tmp")
+                       (type "tmpfs")
+                       (check? #f))
                       %base-file-systems))
 
- (swap-devices '("/dev/nvme0n1p4"))
 
  (users (cons (user-account
                (name %user-name)
