@@ -118,77 +118,11 @@ popd
 
 section "System packages"
 if inpath guix; then
-  if [ ! -e ~/.cache/guix/pull ]; then
-		message "Update Guix to yesterday's version"
-		## TODO: This clones the repository twice, which is a bit dumb, but cloning
-		## locally and then running `guix pull --url=/tmp/guix` produces a different
-		## hash in ~/.cache/guix/...
-		git clone https://git.savannah.gnu.org/git/guix.git /tmp/guix
-		YESTERDAY_COMMIT=$(git -C /tmp/guix log --until=yesterday -n 1 --format=%H)
-		guix pull --commit=$YESTERDAY_COMMIT
-		unset YESTERDAY_COMMIT
-		rm -rfv /tmp/guix
-	elif $OPT_UPDATE; then
-		CURRENT_COMMIT=$(guix --version 2>/dev/null | awk '{print $4; exit}')
-		REPO=$HOME/.cache/guix/pull/"$(ls -1 ~/.cache/guix/pull)"
-		CURRENT_COMMIT_DATE=$(git -C "$REPO" log -n 1 --format=%ct $CURRENT_COMMIT)
-		git -C $REPO pull
-		LATEST_COMMIT_DATE=$(git -C "$REPO" log -n 1 --format=%ct)
-
-		[ -z "$GUIX_DISTRO_AGE_WARNING" ] && GUIX_DISTRO_AGE_WARNING=$((7 * 24 * 60 * 60))
-
-		info "Current commit date: $(date --date="@$CURRENT_COMMIT_DATE") ($CURRENT_COMMIT_DATE)"
-		info "Last commit date: $(date --date="@$LATEST_COMMIT_DATE") ($LATEST_COMMIT_DATE)"
-		info "Difference (in seconds): $(($LATEST_COMMIT_DATE - $CURRENT_COMMIT_DATE))"
-		if [ $(($LATEST_COMMIT_DATE - $CURRENT_COMMIT_DATE)) -gt $GUIX_DISTRO_AGE_WARNING ]; then
-			message "Update Guix since it's older than GUIX_DISTRO_AGE_WARNING ($GUIX_DISTRO_AGE_WARNING)."
-			YESTERDAY_COMMIT=$(git -C "$REPO" log --until=yesterday -n 1 --format=%H)
-			guix pull --commit=$YESTERDAY_COMMIT
-			unset YESTERDAY_COMMIT
-		fi
-		unset LATEST_COMMIT_DATE
-		unset CURRENT_COMMIT_DATE
-		unset REPO
-		unset CURRENT_COMMIT
-	fi
-
 	## TODO: The manifest will uninstall other unspecified packages.  Is this
 	## really what we want?
 	export GUIX_PACKAGE_PATH=$HOME/.guix-packages
 	guix package --manifest=$HOME/.package-lists/guix-manifest.scm --keep-failed
 	. ~/.guix-profile/etc/profile
-fi
-
-
-section "Emacs"
-if ! inpath emacs; then
-	message "Emacs: Installing latest development version"
-	pushd "$HOME/projects"
-	[ -e emacs ] || git clone https://git.savannah.gnu.org/git/emacs.git
-	mkdir -pv ../emacs-build
-	cd ../emacs-build
-	../emacs/configure \
-		--disable-gtk-deprecation-warnings \
-		--without-pop \
-		--without-kerberos \
-		--without-kerberos5 \
-		--with-x-toolkit=gtk3 \
-		--with-jpeg \
-		--with-tiff \
-		--with-gif \
-		--with-png \
-		--with-rsvg \
-		--with-xml2 \
-		--with-imagemagick \
-		--with-xft \
-		--with-libotf \
-		--without-gsettings \
-		--without-gconf \
-		--with-gnutls \
-		--with-modules \
-		--with-threads
-	sudo make install
-	popd
 fi
 
 if inpath emacs; then
