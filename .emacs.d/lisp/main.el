@@ -243,6 +243,8 @@
     ;; Discarding PDFs and images makes it lighter.
     (add-to-list 'desktop-modes-not-to-save 'pdf-view-mode)
     (add-to-list 'desktop-modes-not-to-save 'image-mode)
+    ;; Discard Elfeed since it may ask for PGP passphrase.
+    (add-to-list 'desktop-modes-not-to-save 'elfeed-search-mode)
     ;; TODO: `compile-history' should be buffer local but that does not work.
     ;; http://user42.tuxfamily.org/compile-history-local/index.html
     ;; http://stackoverflow.com/questions/22995203/one-compile-command-per-buffer-not-directory
