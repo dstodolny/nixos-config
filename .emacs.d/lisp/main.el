@@ -200,53 +200,63 @@
 ;;; and http://debbugs.gnu.org/cgi/bugreport.cgi?bug=27422
 ;;; and https://stackoverflow.com/questions/5830494/windows-configuration-to-registers#5830928
 ;;; and https://www.reddit.com/r/emacs/comments/7au3hj/how_do_you_manage_your_emacs_windows_and_stay_sane/dpfbg3a/?context=3.
-(when (daemonp)
-  ;; Auto-load/save sessions only when running the daemon.
-  ;; `server-running-p' is only useful once the daemon is started and cannot be
-  ;; used for initialization.  Use `daemonp' instead.
-  (when (< emacs-major-version 27)
-    ;; By default, Emacs<27 prompts for unsafe variable when loading desktop
-    ;; which stucks the daemon.  Disable this behaviour.
-    (defun dnixty/enable-safe-local-variables ()
-      (setq enable-local-variables t))
-    (add-hook 'after-init-hook 'dnixty/enable-safe-local-variables))
-  (require 'desktop)                    ; This adds a hook to `after-init-hook'.
-  (when (< emacs-major-version 27)
-    (defun dnixty/enable-all-local-variables ()
-      (setq enable-local-variables :all))
-    (add-hook 'after-init-hook 'dnixty/enable-all-local-variables))
-  (when (< emacs-major-version 27)
-    (load "patch-desktop"))
-  (setq history-length 250
-        ;; Default timer (30) is way too high: for somebody too frenzy, the timer
-        ;; might never be saved.  See
-        ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=28943.
-        desktop-auto-save-timeout 5
-        ;; desktop-restore-eager 4 ; Can be annoying as you don't have your last-loaded buffers immediately.
-        ;; desktop-load-locked-desktop 'ask
-        desktop-restore-frames nil
-        desktop-save t)
-  ;; Before Emacs 27, initialization needs the patch above.
-  (if (< emacs-major-version 27)
-      (desktop-save-mode)
-    (defun dnixty/desktop-init (_frame)
-      (desktop-save-mode)
-      (desktop-read)
-      (remove-hook 'server-after-make-frame-hook 'dnixty/desktop-init))
-    (add-hook 'server-after-make-frame-hook 'dnixty/desktop-init))
-  ;; Don't save crytped files since they can't be restored.
-  (setq desktop-files-not-to-save
-        (concat (substring desktop-files-not-to-save 0 -2) "\\|" (regexp-quote ".gpg") "\\'\\)"))
-  ;; Discarding PDFs and images makes it lighter.
-  (add-to-list 'desktop-modes-not-to-save 'pdf-view-mode)
-  (add-to-list 'desktop-modes-not-to-save 'image-mode)
-  ;; TODO: `compile-history' should be buffer local but that does not work.
-  ;; http://user42.tuxfamily.org/compile-history-local/index.html
-  ;; http://stackoverflow.com/questions/22995203/one-compile-command-per-buffer-not-directory
-  (add-to-list 'desktop-locals-to-save 'compile-history)
-  (add-to-list 'desktop-locals-to-save 'compile-command)
-  (add-to-list 'desktop-locals-to-save 'ispell-local-dictionary))
+(defun dnixty/desktop-setup ()
+  (when (and (server-running-p)
+             (or (not (boundp 'desktop-save-mode))
+                 (null desktop-save-mode)))
+    (when (< emacs-major-version 27)
+      ;; By default, Emacs<27 prompts for unsafe variable when loading desktop
+      ;; which stucks the daemon.  Disable this behaviour.
+      (defun dnixty/enable-safe-local-variables ()
+        (setq enable-local-variables t))
+      (add-hook 'after-init-hook 'dnixty/enable-safe-local-variables))
+    (require 'desktop)                  ; This adds a hook to `after-init-hook'.
+    (when (< emacs-major-version 27)
+      (defun dnixty/enable-all-local-variables ()
+        (setq enable-local-variables :all))
+      (add-hook 'after-init-hook 'dnixty/enable-all-local-variables))
+    (when (< emacs-major-version 27)
+      (load "patch-desktop"))
+    (setq history-length 250
+          ;; Default timer (30) is way too high: for somebody too frenzy, the timer
+          ;; might never be saved.  See
+          ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=28943.
+          desktop-auto-save-timeout 5
+          ;; desktop-restore-eager 4 ; Can be annoying as you don't have your last-loaded buffers immediately.
+          ;; desktop-load-locked-desktop 'ask
+          desktop-restore-frames nil
+          desktop-save t)
+    ;; (if (< emacs-major-version 27)
+    ;;     (desktop-save-mode)
+    ;;   (defun dnixty/desktop-init (_frame)
+    ;;     (desktop-save-mode)
+    ;;     (desktop-read)
+    ;;     (remove-hook 'server-after-make-frame-hook 'dnixty/desktop-init))
+    ;;   (add-hook 'server-after-make-frame-hook 'dnixty/desktop-init))
+    (desktop-save-mode)
+    (desktop-read)
+    ;; Don't save crytped files since they can't be restored.
+    (setq desktop-files-not-to-save
+          (concat (substring desktop-files-not-to-save 0 -2) "\\|" (regexp-quote ".gpg") "\\'\\)"))
+    ;; Discarding PDFs and images makes it lighter.
+    (add-to-list 'desktop-modes-not-to-save 'pdf-view-mode)
+    (add-to-list 'desktop-modes-not-to-save 'image-mode)
+    ;; TODO: `compile-history' should be buffer local but that does not work.
+    ;; http://user42.tuxfamily.org/compile-history-local/index.html
+    ;; http://stackoverflow.com/questions/22995203/one-compile-command-per-buffer-not-directory
+    ;; (add-to-list 'desktop-locals-to-save 'compile-history)
+    (add-to-list 'desktop-locals-to-save 'compile-command)
+    (add-to-list 'desktop-locals-to-save 'ispell-local-dictionary)))
 
+;; Auto-load/save sessions only when running the daemon.  `server-running-p' is
+;; only useful once the daemon is started and cannot be used for initialization.
+;; Use `daemonp' instead if emacs is started with `--daemon', or add to the
+;; server hook otherwise.
+(when (daemonp)
+  (dnixty/desktop-setup))
+;; If started with `server-start' instead of `--daemon'.
+;; server-mode does not seem to have any post-start hook.
+(advice-add 'server-start :after #'dnixty/desktop-setup)
 
 ;;; Buffer names.
 (setq uniquify-buffer-name-style 'forward)
