@@ -22,7 +22,7 @@
 (add-hook 'before-save-hook 'save-place-kill-emacs-hook)
 
 ;;; Recent files
-(setq recentf-max-saved-items 40)
+(setq recentf-max-saved-items 100)
 
 ;; Save M-: history.
 (savehist-mode)
