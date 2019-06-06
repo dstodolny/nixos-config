@@ -2,7 +2,6 @@
 (specifications->manifest
   '("bluez"
     "bzip2"
-    "chromium"
     "conky"
     "cryptsetup"
     "cups-filters"
