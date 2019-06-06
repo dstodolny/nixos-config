@@ -10,7 +10,6 @@
 .dbus
 .fontconfig
 .gimp*
-.gnupg
 .go*
 .lesshst
 .local/share/emacs
@@ -32,3 +31,4 @@
 .thumbnails/
 .wine
 .config/guix/current
+~/.gnupg
