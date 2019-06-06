@@ -21,7 +21,8 @@
 
 (when (require 'wgrep-helm nil t)
   (setq wgrep-auto-save-buffer t
-        wgrep-enable-key (kbd "C-x C-q")))
+        wgrep-enable-key (kbd "C-x C-q"))
+  (add-hook 'wgrep-setup-hook #'wgrep-change-to-wgrep-mode))
 
 (when (require 'helm-ls-git nil t)
   ;; `helm-source-ls-git' must be defined manually.
@@ -49,6 +50,7 @@
  helm-dwim-target 'completion
  helm-echo-input-in-header-line t
  helm-use-frame-when-more-than-two-windows nil
+ helm-grep-save-buffer-name-no-confirm t
 
  helm-apropos-fuzzy-match t
  helm-buffers-fuzzy-matching t
