@@ -201,7 +201,8 @@
 ;;; and https://stackoverflow.com/questions/5830494/windows-configuration-to-registers#5830928
 ;;; and https://www.reddit.com/r/emacs/comments/7au3hj/how_do_you_manage_your_emacs_windows_and_stay_sane/dpfbg3a/?context=3.
 (defun dnixty/desktop-setup (&rest _ignored)
-  (when (and (server-running-p)
+  (when (and (fboundp 'server-running-p)
+             (server-running-p)
              (or (not (boundp 'desktop-save-mode))
                  (null desktop-save-mode)))
     (when (< emacs-major-version 27)
