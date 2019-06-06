@@ -31,3 +31,4 @@
 .texlive*
 .thumbnails/
 .wine
+.config/guix/current
