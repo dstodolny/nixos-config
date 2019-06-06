@@ -4,6 +4,7 @@
 (let ((win (shell-command "conky 2>/dev/null | dzen2 -p -dock -ta l -fn \"DejaVu Sans Mono\" &")))
   ;; Don't pop the output buffer.
   (with-current-buffer (window-buffer win)
+    (fundamental-mode)
     (rename-buffer " *Async conky|dzen*"))
   (delete-window win))
 (exwm-enable)
