@@ -98,6 +98,9 @@
   (nconc package-selected-packages '(guix))
   (require 'init-guix))
 
+;;; Haskell
+(nconc package-selected-packages '(haskell-mode))
+
 ;;; Helm
 (nconc package-selected-packages '(helm helm-descbinds helm-ls-git))
 (when (require 'helm-config nil t) (require 'init-helm))
