@@ -208,9 +208,7 @@
 ;;; See https://github.com/politza/pdf-tools/issues/18.
 (nconc package-selected-packages '(pdf-tools))
 (when (require 'pdf-tools nil t)
-	(setq pdf-view-midnight-colors '("#99d1ce" . "#0c1014")) ; Amber
-	(add-hook 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
-	(pdf-tools-install t t t))
+  (pdf-tools-install t t t))
 
 ;;; Pinentry
 (nconc package-selected-packages '(pinentry)) ; pinentry.el was removed from Emacs 26
