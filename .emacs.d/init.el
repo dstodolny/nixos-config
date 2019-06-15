@@ -100,6 +100,7 @@
 
 ;;; Haskell
 (nconc package-selected-packages '(haskell-mode))
+(when (require 'haskell-mode nil t) (require 'init-haskell))
 
 ;;; Helm
 (nconc package-selected-packages '(helm helm-descbinds helm-ls-git))
