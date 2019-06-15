@@ -193,7 +193,7 @@
 (autoload 'helm-elfeed-switch "elfeed")
 
 ;;; Org-mode
-(nconc package-selected-packages '(org-plus-contrib org-bullets helm-org-contacts)) ; org-plus contains lates Org mode.
+(nconc package-selected-packages '(org-plus-contrib org-bullets helm-org-contacts)) ; org-plus contains latest Org mode.
 (with-eval-after-load 'org (require 'init-org))
 (autoload 'helm-org-switch "org")
 
@@ -201,7 +201,7 @@
 (nconc package-selected-packages '(helm-pass))
 
 ;;; PDF
-;;; pdf-tools requires poppler bilt with cairo support.
+;;; pdf-tools requires poppler built with cairo support.
 ;;; We cannot defer loading as `pdf-tools-install' is required for PDF
 ;;; association.
 ;;; REVIEW: `save-place' does not seem to work with pdf-tools.
