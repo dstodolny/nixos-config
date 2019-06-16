@@ -77,6 +77,10 @@ Defaults umask_override
 root ALL=(ALL) ALL
 %wheel ALL=(ALL) NOPASSWD:ALL\n"))
 
+(define %heimdall/tor-config
+	"ExitNodes {se},{nl},{fr},{ee},{no},{dk},{fi}
+StrictNodes 1")
+
 (operating-system
  (host-name %hostname)
  (timezone "Europe/London")
@@ -144,6 +148,9 @@ root ALL=(ALL) ALL
                       (web-interface? #t)
                       (extensions
                        (list cups-filters hplip-minimal))))
+						(service tor-service-type
+										 (tor-configuration
+											(config-file (plain-file "tor.conf" %heimdall/tor-config))))
             (extra-special-file "/usr/bin/env"
                                 (file-append coreutils "/bin/env"))
             (extra-special-file "/usr/bin/bash"

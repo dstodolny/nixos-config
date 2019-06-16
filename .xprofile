@@ -21,5 +21,8 @@ xset -b
 ## Lock screen on sleep.
 xss-lock slock &
 
+## Privoxy
+privoxy --no-daemon ~/.config/privoxy/config &
+
 ## Hook. Should be sourced last.
 [ -f ~/.xprofile_hook ] && . ~/.xprofile_hook
