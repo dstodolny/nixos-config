@@ -72,7 +72,7 @@ project_status() {
 	echo "$body"
 }
 
-for i in ~/dotfiles ~/.password-store ~/personal ~/projects/* "$@"; do
+for i in ~/dotfiles ~/.password-store ~/personal ~/projects/* ~/.local/share/emacs/site-lisp/* "$@"; do
 	[ ! -d "$i/.git" ] && continue
 	CHANGED=true
 	push=$(git -C "$i" rev-parse --abbrev-ref --symbolic-full-name @{push} 2>&1)

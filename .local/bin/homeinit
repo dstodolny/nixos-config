@@ -130,6 +130,15 @@ if inpath emacs; then
 	mkdir -pv "$HOME/.cache/emacs/"
   message "Emacs ELPA packages"
   yes | emacs --batch -l ~/.emacs.d/init.el --eval '(progn (package-refresh-contents) (package-install-selected-packages))'
+	message "Emacs local packages"
+	if [ -e ~/.local/share/emacs/site-lisp ]; then
+		for i in ~/.local/share/emacs/site-lisp/*; do
+			echo "$i"
+			git -C "$i" pull
+		done
+	else
+		mkdir -pv ~/.local/share/emacs/site-lisp
+	fi
 fi
 
 section "Node.js"

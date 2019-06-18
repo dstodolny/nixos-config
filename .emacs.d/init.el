@@ -41,6 +41,22 @@
   (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
   (package-initialize))
 
+;;; Site Lisp folder for local packages and development.
+;; We need to roll it out manually since we want it first in the `load-path',
+;; while `normal-top-level-add-subdirs-to-load-path' appends it to the very end.
+(defun dnixty/package-refresh-load-path (path)
+  "Add every non-hidden sub-folder of PATH to `load-path'."
+  (when (file-directory-p path)
+    (dolist (dir (directory-files path t "^[^\\.]"))
+      (when (file-directory-p dir)
+        (setq load-path (add-to-list 'load-path dir))
+        (dolist (subdir (directory-files dir t "^[^\\.]"))
+          (when (file-directory-p subdir)
+            (setq load-path (add-to-list 'load-path subdir))))))))
+(let ((site-lisp (expand-file-name "site-lisp/" "~/.local/share/emacs/")))
+  (add-to-list 'load-path site-lisp)
+  (dnixty/package-refresh-load-path site-lisp))
+
 ;;; Local config. See below for an example usage.
 (load "local-before" t)
 
