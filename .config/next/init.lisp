@@ -1,14 +1,14 @@
 (in-package :next)
 
 ;; Use development platform port.
-;; (setf (get-default 'port 'path)
-      ;; (format nil "~a/common-lisp/next/ports/gtk-webkit/next-gtk-webkit"
-              ;; (uiop:getenv "HOME")))
+(setf (get-default 'port 'path)
+      (format nil "~a/common-lisp/next/ports/gtk-webkit/next-gtk-webkit"
+              (uiop:getenv "HOME")))
 
-;; (setf (cdr (last (eval (get-default 'window 'search-engines))))
-;;       '(("yt" . "https://www.youtube.com/results?search_query=~a")))
-;; (nconc (eval (get-default 'window 'search-engines))
-       ;; '(("yt" . "https://www.youtube.com/results?search_query=~a")))
+(setf (cdr (last (eval (get-default 'window 'search-engines))))
+      '(("yt" . "https://www.youtube.com/results?search_query=~a")))
+(nconc (eval (get-default 'window 'search-engines))
+       '(("yt" . "https://www.youtube.com/results?search_query=~a")))
 
 (define-key (key "C-M-b") #'switch-buffer
   (key "C-M-w") #'make-window
@@ -44,17 +44,17 @@
 
 (define-key (key "C-M-o") #'org-capture)
 
-;; (define-command youtube-dl-current-page ()
-;;   "Download a video in the currently open buffer."
-;;   (with-result (url (buffer-get-url))
-;;     (eval-in-emacs
-;;      (if (search "youtu" url)
-;;          `(progn (youtube-dl ,url) (youtube-dl-list))
-;;          `(ambrevar/youtube-dl-url ,url)))))
-;; (define-key (key "C-M-c d") 'youtube-dl-current-page)
+(define-command youtube-dl-current-page ()
+  "Download a video in the currently open buffer."
+  (with-result (url (buffer-get-url))
+    (eval-in-emacs
+     (if (search "youtu" url)
+         `(progn (youtube-dl ,url) (youtube-dl-list))
+         `(dnixty/youtube-dl-url ,url)))))
+(define-key (key "C-M-c d") 'youtube-dl-current-page)
 
-;; (define-command play-video-in-current-page ()
-;;   "Play video in the currently open buffer."
-;;   (with-result (url (buffer-get-url))
-;;     (uiop:run-program (list "mpv" url))))
-;; (define-key (key "C-M-c v") 'play-video-in-current-page)
+(define-command play-video-in-current-page ()
+  "Play video in the currently open buffer."
+  (with-result (url (buffer-get-url))
+    (uiop:run-program (list "mpv" url))))
+(define-key (key "C-M-c v") 'play-video-in-current-page)
