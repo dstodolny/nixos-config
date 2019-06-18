@@ -206,6 +206,13 @@
 (nconc package-selected-packages '(markdown-mode))
 (with-eval-after-load 'markdown-mode (require 'init-markdown))
 
+;;; Matlab / Octave
+;; (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode)) ; matlab, but conflicts with obj-c.
+(defun dnixty/octave-set-comment-start ()
+  "Set comment character to '%' to be Matlab-compatible."
+  (set (make-local-variable 'comment-start) "% "))
+(add-hook 'octave-mode-hook 'dnixty/octave-set-comment-start)
+
 ;;; News
 (nconc package-selected-packages '(elfeed hackernews))
 (with-eval-after-load 'elfeed (require 'init-elfeed))
