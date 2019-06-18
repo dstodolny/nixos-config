@@ -31,6 +31,15 @@
 ;;; Move user-emacs-directory  so that user files don't mix with cache files.
 (setq user-emacs-directory "~/.cache/emacs/")
 
+;; Tor / Proxy: set up before package initialization.
+(when (member "privoxy"
+              (mapcar (lambda (p) (alist-get 'comm (process-attributes p)))
+                      (list-system-processes)))
+  (require 'url)
+  (setq url-proxy-services
+        '(("http" . "127.0.0.1:8118")
+          ("https" . "127.0.0.1:8118"))))
+
 (when (require 'package nil t)
   ;; Different Emacs version have different byte code. If a versioned ELPA
   ;; directory is found, use it.
