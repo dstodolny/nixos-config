@@ -130,10 +130,12 @@
 	(global-set-key (kbd "C-h F") #'helpful-function)
 	(global-set-key (kbd "C-h c") #'helpful-key))
 
+;;; Hex editing
+(nconc package-selected-packages '(nhexl-mode))
+
 ;;; Highlight
 (nconc package-selected-packages '(hl-todo))
 (when (require 'hl-todo nil t)
-
 	(add-to-list 'hl-todo-keyword-faces `("REVIEW" . ,(alist-get "TODO" hl-todo-keyword-faces nil nil 'equal)))
 	(global-hl-todo-mode)
 	;; (global-set-key (kbd "M-s M-o") 'hl-todo-occur)
