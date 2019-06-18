@@ -230,6 +230,9 @@
 ;;; Pinentry
 (nconc package-selected-packages '(pinentry)) ; pinentry.el was removed from Emacs 26
 
+;;; Python
+(with-eval-after-load 'python (require 'init-python))
+
 ;;; Rainbow-mode
 (nconc package-selected-packages '(rainbow-mode))
 (when (require 'rainbow-mode nil t)
