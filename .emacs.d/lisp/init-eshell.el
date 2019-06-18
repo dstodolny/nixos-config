@@ -148,7 +148,7 @@
 (setq-default eshell-prompt-regexp "^> ")
 
 (with-eval-after-load 'em-term
-  (dolist (p '("nix-shell" "pinentry-curses"))
+  (dolist (p '("nix-shell" "pinentry-curses" "mpv"))
     (add-to-list 'eshell-visual-commands p)))
   ;; (setq eshell-visual-subcommands
         ;; Some Git commands use a pager by default.

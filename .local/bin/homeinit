@@ -99,7 +99,7 @@ EOF
 	fi
 
 section "Persistent folders"
-for i in .config .emacs.d .local/share projects temp; do
+for i in .config .emacs.d .local/share .mpv projects temp; do
 	mkdir -pv "$HOME/$i"
 done
 
