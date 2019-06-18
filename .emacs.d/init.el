@@ -137,6 +137,7 @@
 
 ;;; IRC
 (nconc package-selected-packages '(circe))
+(with-eval-after-load 'circe (require 'init-circe))
 
 ;;; Lisp
 (nconc package-selected-packages '(lispy lispyville rainbow-delimiters geiser slime))
