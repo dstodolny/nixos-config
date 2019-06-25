@@ -278,8 +278,6 @@
 ;;; Disable prompt (but leave warning) on git symlink.
 (setq vc-follow-symlinks t)
 
-
-
 ;;; Clipboard and primary selection.
 (setq select-enable-primary t
       save-interprogram-paste-before-kill t)
@@ -326,10 +324,10 @@
 (setq frame-title-format (concat "%b" (unless (daemonp) " [serverless]")))
 
 ;;; Initial scratch buffer message.
-(require 'functions) ; For `dnixty/fortune-scratch-message'.
-(let ((fortune (dnixty/fortune-scratch-message)))
-  (when fortune
-    (setq initial-scratch-message fortune)))
+;; (require 'functions) ; For `dnixty/fortune-scratch-message'.
+;; (let ((fortune (dnixty/fortune-scratch-message)))
+;;   (when fortune
+;;     (setq initial-scratch-message fortune)))
 
 ;;; Support for Emacs pinentry.
 ;;; Required for eshell/sudo and everything relying on GPG queries.

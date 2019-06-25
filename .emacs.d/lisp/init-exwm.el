@@ -97,6 +97,8 @@
 (when (fboundp 'helm-pass)
   (exwm-input-set-key (kbd "s-p") #'helm-pass))
 
+(exwm-input-set-key (kbd "C-s-c") #'org-capture)
+
 (autoload 'dnixty/slime-to-repl "lisp")
 (exwm-input-set-key (kbd "s-<backspace>") #'dnixty/slime-switch-to-repl)
 (defun dnixty/repl-switcher ()
