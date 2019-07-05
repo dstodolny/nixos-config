@@ -145,10 +145,12 @@
 ;;; Highlight
 (nconc package-selected-packages '(hl-todo))
 (when (require 'hl-todo nil t)
-	(add-to-list 'hl-todo-keyword-faces `("REVIEW" . ,(alist-get "TODO" hl-todo-keyword-faces nil nil 'equal)))
-	(global-hl-todo-mode)
-	;; (global-set-key (kbd "M-s M-o") 'hl-todo-occur)
-	(define-key hl-todo-mode-map (kbd "M-s t") 'hl-todo-occur))
+  (add-to-list 'hl-todo-keyword-faces `("REVIEW" . ,(alist-get "TODO" hl-todo-keyword-faces nil nil 'equal)))
+  (add-to-list 'hl-todo-keyword-faces `("WAITING" . ,(alist-get "HOLD" hl-todo-keyword-faces nil nil 'equal)))
+  (add-to-list 'hl-todo-keyword-faces `("CANCELLED" . ,(alist-get "PROG" hl-todo-keyword-faces nil nil 'equal)))
+  (global-hl-todo-mode)
+  ;; (global-set-key (kbd "M-s M-o") 'hl-todo-occur)
+  (define-key hl-todo-mode-map (kbd "M-s t") 'hl-todo-occur))
 
 ;;; Iedit
 (nconc package-selected-packages '(iedit))

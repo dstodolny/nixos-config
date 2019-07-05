@@ -15,9 +15,8 @@
  org-ellipsis " […]"
  org-adapt-indentation nil
  ;; Add keywords.
- org-todo-keywords '((sequence "TODO" "REVIEW" "DONE"))
- ;; org-todo-keyword-faces '(("REVIEW" :inherit org-done))
- ;; Priorities.
+ org-todo-keywords '((sequence "TODO(t)" "REVIEW(r)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)"))
+  ;; Priorities.
  org-priority-start-cycle-with-default nil
  org-default-priority 67
  ;; Org-mode aligns text.
@@ -78,7 +77,7 @@
 
 (setq org-capture-templates '(("t" "TODO [inbox]" entry
                                (file+headline "~/personal/gtd/inbox.org.gpg" "Tasks")
-                               "* REVIEW %i%?")
+                               "* TODO %i%?")
                               ("w" "Web link [inbox]" entry
                                (file+headline "~/personal/gtd/inbox.org.gpg" "Links")
                                "* %?%a\n:SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))\n")
@@ -89,6 +88,15 @@
 (setq org-agenda-custom-commands
       '(("o" "At the office" tags-todo "@office"
          ((org-agenda-overriding-header "Office")
+          (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))
+        ("i" "On the Internet" tags-todo "@internet"
+         ((org-agenda-overriding-header "Internet")
+          (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))
+        ("E" "Errands" tags-todo "@errands"
+         ((org-agenda-overriding-header "Errands")
+          (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))
+        ("A" "Anywhere" tags-todo "@anywhere"
+         ((org-agenda-overriding-header "Anywhere")
           (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))
         ("h" "At home" tags-todo "@home"
          ((org-agenda-overriding-header "Home")
