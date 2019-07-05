@@ -1,4 +1,4 @@
-;; commit: 1e609b78c7f35fc6230638e2e24f57ab2715d9f2
+;; commit: fc3f14927feb91f33324248107492ccbb4d43155
 (specifications->manifest
   '("bluez"
     "bzip2"
@@ -100,6 +100,7 @@
     "stow"
     "sxiv"
     "torsocks"
+    "ungoogled-chromium"
     "wget"
     "xbacklight"
     "xbindkeys"
@@ -114,5 +115,4 @@
     "xrdb"
     "xss-lock"
     "youtube-dl"
-    "youtube-viewer"
     "zip"))
