@@ -50,5 +50,3 @@ cmd = man -P cat
 [diff "gpg"]
 	binary = true
 	textconv = gpg -d --quiet --yes --compress-algo=none --no-encrypt-to
-[http]
-	proxy = socks5://127.0.0.1:9050

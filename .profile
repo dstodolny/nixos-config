@@ -40,18 +40,18 @@ prependpath () {
 prependpath "${HOME}/personal/hackpool"
 
 ## Last PATH entries.
-appendpath "${HOME}/.local/bin"
+#appendpath "${HOME}/.local/bin"
 
 ## Node
-appendpath "${HOME}/.vnode/bin"
+#appendpath "${HOME}/.vnode/bin"
 
 ## mcron: needs to be run after PATH is fully set or else local programs could
 ## be missing.
-if command -v mcron >/dev/null 2>&1; then
+#if command -v mcron >/dev/null 2>&1; then
 	# TODO: Only start if not already started?
 	# pkill mcron
-	mcron &
-fi
+#	mcron &
+#fi
 
 ## Remove less history.
 LESSHISTFILE='-'
@@ -65,14 +65,14 @@ export TIME_STYLE=+"|%Y-%m-%d %H:%M:%S|"
 
 ## SSH-Agent
 ## Set SSH to use gpg-agent
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
+#unset SSH_AGENT_PID
+#if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+#  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+#fi
 # Set GPG TTY
-export GPG_TTY=$(tty)
+# export GPG_TTY=$(tty)
 # Refresh gpg-agent tty in case user switches into an X session
-gpg-connect-agent updatestartuptty /bye >/dev/null
+# gpg-connect-agent updatestartuptty /bye >/dev/null
 
 ## Linux specific
 if [ "$(uname -o)" = "GNU/Linux" ] ; then
@@ -97,7 +97,7 @@ export GIT_EDITOR
 export VISUAL
 
 ## Guix locale
-export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+# export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 
 ## Hook. Should be sourced last
 [ -f ~/.profile_hook ] && . ~/.profile_hook
@@ -115,6 +115,6 @@ export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 [ "$(ps -o comm= $$)" != bash ] && return
 [ -f ~/.bashrc ] && . ~/.bashrc
 
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-	startx
-fi
+# if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+	# startx
+# fi
