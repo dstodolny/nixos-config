@@ -40,10 +40,7 @@ prependpath () {
 prependpath "${HOME}/personal/hackpool"
 
 ## Last PATH entries.
-#appendpath "${HOME}/.local/bin"
-
-## Node
-#appendpath "${HOME}/.vnode/bin"
+appendpath "${HOME}/.local/bin"
 
 ## mcron: needs to be run after PATH is fully set or else local programs could
 ## be missing.
@@ -62,17 +59,6 @@ export MANWIDTH=80
 
 ## Time display (with ls command for example).  GNU 'ls' only.
 export TIME_STYLE=+"|%Y-%m-%d %H:%M:%S|"
-
-## SSH-Agent
-## Set SSH to use gpg-agent
-#unset SSH_AGENT_PID
-#if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-#  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-#fi
-# Set GPG TTY
-# export GPG_TTY=$(tty)
-# Refresh gpg-agent tty in case user switches into an X session
-# gpg-connect-agent updatestartuptty /bye >/dev/null
 
 ## Linux specific
 if [ "$(uname -o)" = "GNU/Linux" ] ; then
@@ -96,9 +82,6 @@ VISUAL="$EDITOR"
 export GIT_EDITOR
 export VISUAL
 
-## Guix locale
-# export GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
-
 ## Hook. Should be sourced last
 [ -f ~/.profile_hook ] && . ~/.profile_hook
 ## Hook example
@@ -114,7 +97,3 @@ export VISUAL
 ## End: Source .bashrc. The rc file should guard against non-interactive shells.
 [ "$(ps -o comm= $$)" != bash ] && return
 [ -f ~/.bashrc ] && . ~/.bashrc
-
-# if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-	# startx
-# fi
