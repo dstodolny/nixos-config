@@ -1,19 +1,12 @@
 #!/bin/sh
 
-HTTPS_ROOT=https://github.com/
-SSH_ROOT=git@github.com:
-LOCAL_ROOT=ssh://dom@192.168.1.215:8201/media/NFS02/git
-ROOT=$HTTPS_ROOT
-PROFILE=/tmp/homeinit-$USER/homeinit
+GITLAB_ROOT=git@gitlab.com:
+GITHUB_ROOT=git@github.com:
 USER_NAME=dnixty
-REPO_NAME=dotfiles
-OPT_UPDATE=true
+MACHINE=heimdall
 
 [ -z "$DOTFILESDIR" ] && DOTFILESDIR="$HOME/dotfiles"
-[ -z "$SOURCEDIR" ] && SOURCEDIR="$HOME/personal"
-[ -z "$XDG_CONFIG_HOME" ] && XDG_CONFIG_HOME="$HOME/.config"
-[ -z "$XDG_DATA_HOME" ] && XDG_DATA_HOME="$HOME/.local/share"
-[ -z "$EMACS_MIN_VERSION" ] && EMACS_MIN_VERSION=26
+[ -z "$HOME_MANAGER_CONFIG" ] && HOME_MANAGER_CONFIG="$HOME/.config/nixpkgs"
 
 RED='\033[0;31m\033[1m'
 GREEN='\033[0;32m\033[1m'
@@ -48,81 +41,59 @@ inpath() {
 
 #################################################################################
 
-section "Initial packages"
-if inpath guix; then
-  ## OpenSSH is not an input of Git, upstream does not want to increase the
-	## closure size that much.
-	mkdir "$(dirname "$PROFILE")"
-	guix package --profile="$PROFILE" --install openssh gnupg git stow password-store pinentry-tty
-	source "$PROFILE"/etc/profile
+section "GPG"
+if [ -d ~/.gnupg ]; then
+	## Set up gpg-agent to authenticate.
+	chmod -R go-rwx ~/.gnupg
+
+	if [ -e ~/personal ]; then
+		git -C ~/personal pull
+	else
+		git clone ${GITLAB_ROOT}/personal.git ~/personal
+	fi
+	if [ -e ~/.password-store ]; then
+		git -C ~/.password-store pull
+	else
+		git clone ${GITLAB_ROOT}/password-store.git ~/.password-store
+		## The following is necessary to make sure the 'diff' GPG filter is properly set up.
+		pass git init
+	fi
+else
+	warning "~/.gnupg not found."
 fi
 
-	section "GPG"
-	if [ -d ~/.gnupg ]; then
-		## Set up gpg-agent to authenticate LOCAL_ROOT.
-		chmod -R go-rwx ~/.gnupg
-		export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-		if [ "$GPG_TTY" != "not a tty" ]; then
-		## If a TTY, since our ~/.gnupg/gpg-agent.conf exists and specifies a
-		## pinentry, we must force the TTY version or else it won't work from a TTY.
-			gpgconf --kill gpg-agent
-			cat<<EOF>"$(dirname "$PROFILE")/gpg-agent.conf"
-## 1-day timeout
-default-cache-ttl 86400
-max-cache-ttl 86400
-## SSH
-enable-ssh-support
-default-cache-ttl-ssh 86400
-max-cache-ttl-ssh 86400
-## Force pinentry (should be pinentry-tty)
-pinentry-program $(readlink -f $(which pinentry))
-EOF
-			gpg-agent --homedir ~/.gnupg --daemon --options "$(dirname "$PROFILE")/gpg-agent.conf"
-		fi
-		## Start gpg-agent manually since SSH requests do not do it automatically.
-		gpg-connect-agent updatestartuptty /bye
-
-		if [ -e "$SOURCEDIR" ]; then
-			git -C "$SOURCEDIR" pull
-		else
-			git clone ${LOCAL_ROOT}/personal.git ~/personal
-		fi
-		if [ -e ~/.password-store ]; then
-			git -C ~/.password-store pull
-		else
-			git clone ${LOCAL_ROOT}/password-store.git ~/.password-store
-			## The following is necessary to make sure the 'diff' GPG filter is properly set up.
-			pass git init
-		fi
-	else
-		warning "~/.gnupg not found."
-	fi
-
 section "Persistent folders"
-for i in .config .emacs.d .local/share .mpv projects temp; do
+for i in .config .emacs.d .local/share projects temp; do
 	mkdir -pv "$HOME/$i"
 done
 
 section "dotfiles"
 if [ -e "$DOTFILESDIR" ]; then
-  git -C ~/dotfiles remote set-url origin ${SSH_ROOT}$USER_NAME/dotfiles
+  git -C ~/dotfiles remote set-url origin ${GITHUB_ROOT}$USER_NAME/dotfiles.git
   git -C "$DOTFILESDIR" pull
 else
-	git clone ${SSH_ROOT}$USER_NAME/dotfiles || exit 1
+	git clone ${GITHUB_ROOT}$USER_NAME/dotfiles.git || exit 1
 fi
-pushd "$DOTFILESDIR"
-## .bash_profile may prevent .profile from being parsed, so we move it.
-[ -e ~/.bash_profile ] && mv -v ~/.bash_profile ~/.bash_profile.old
-stow -v . || exit 1
-popd
 
-section "System packages"
-if inpath guix; then
-	## TODO: The manifest will uninstall other unspecified packages.  Is this
-	## really what we want?
-	export GUIX_PACKAGE_PATH=$HOME/.guix-packages
-	guix package --manifest=$HOME/.package-lists/guix-manifest.scm --keep-failed
-	. ~/.guix-profile/etc/profile
+section "Home manager"
+if [ -e "$HOME_MANAGER_CONFIG" ]; then
+	home-manager switch
+else
+	ln -s "$DOTFILESDIR" "$HOME_MANAGER_CONFIG"
+	nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
+	nix-channel --update
+	nix-shell '<home-manager>' -A install
+	cat<<EOF>"$HOME_MANAGER_CONFIG/home.nix"
+{ config, pkgs, ... }:
+
+{
+  imports = [
+    ./machines/$MACHINE.nix
+  ];
+
+  programs.home-manager.enable = true;
+}
+EOF
 fi
 
 if inpath emacs; then
@@ -141,26 +112,13 @@ if inpath emacs; then
 	fi
 fi
 
-section "Node.js"
-if inpath npm; then
-	mkdir -pv "$HOME/.vnode"
-	npm config set prefix "$HOME/.vnode"
-	npm install -g npm
-fi
-
-section "Nix"
-if inpath nix; then
-	sudo mkdir -pv /nix
-	sudo chown -R "$(whoami)" /nix
-fi
-
-if [ -x ~/.local/bin/updatedb-local ]; then
+if [ -x ~/bin/updatedb-local ]; then
 	section "locate db"
-	~/.local/bin/updatedb-local
+	~/bin/updatedb-local
 fi
 
 if [ -f ~/personal/history/eshell.gpg ]; then
 	section "Shell history"
 	mkdir -pv ~/.cache/emacs/eshell/
-	gpg --output ~/.cache/emacs/eshell/history --decrypt ~/personal/history/eshell.gpg
+	yes | gpg --output ~/.cache/emacs/eshell/history --decrypt ~/personal/history/eshell.gpg
 fi
