@@ -96,7 +96,6 @@
 (nconc package-selected-packages '(ztree))
 
 ;;; Dired
-(nconc package-selected-packages '(disk-usage))
 ;;; Dired is loaded after init.el, so configure it only then.
 (with-eval-after-load 'dired (require 'init-dired))
 
@@ -230,7 +229,7 @@
 (autoload 'helm-elfeed-switch "elfeed")
 
 ;;; Org-mode
-(nconc package-selected-packages '(org-plus-contrib org-bullets helm-org-contacts)) ; org-plus contains latest Org mode.
+(nconc package-selected-packages '(org-plus-contrib org-bullets)) ; org-plus contains latest Org mode.
 (with-eval-after-load 'org (require 'init-org))
 (autoload 'helm-org-switch "org")
 

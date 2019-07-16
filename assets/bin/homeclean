@@ -28,7 +28,6 @@ set -- "$HOME/.bash_history" \
 	"$HOME/.tramp_history" \
 	"$HOME/.units_history" \
 	"$HOME/.wget-hsts" \
-	"$HOME/.w3m"
 
 echo "==> Files to be removed (beside trash):"
 echo "$@" | sed 's/ /\n/g'

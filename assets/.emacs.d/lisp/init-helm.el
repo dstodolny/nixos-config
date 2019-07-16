@@ -218,7 +218,6 @@ Requires `call-process-to-string' from `functions'."
 ;;; The text-mode-map binding targets structured text modes like Markdown.
 (define-key text-mode-map (kbd "M-s f") 'helm-semantic-or-imenu)
 (with-eval-after-load 'org
-  (require 'helm-org-contacts nil t)
   (define-key org-mode-map (kbd "M-s f") 'helm-org-in-buffer-headings))
 (with-eval-after-load 'woman
   (define-key woman-mode-map (kbd "M-s f") 'helm-imenu))
