@@ -23,6 +23,8 @@
     };
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   home = {
     file = {
       ".Xresources".source = ../assets/.Xresources;
@@ -31,12 +33,24 @@
       ".gitconfig".source = ../assets/.gitconfig;
       "bin".source = ../assets/bin;
       ".gnupg/gpg.conf".source = ../assets/.gnupg/gpg.conf;
+
+      # npm
+      ".npmrc".text = ''
+        prefix = ~/.local/npm
+      '';
     };
 
     packages = with pkgs; [
       firefox
+      chromium
       pinentry_emacs
-      pass
+      pass-otp
+      nodejs-10_x
+      mlocate
+
+      # unfree
+      slack
+      zoom-us
     ];
   };
 }
