@@ -48,6 +48,14 @@
       nodejs-10_x
       mlocate
 
+      # anki
+      anki
+
+      # haskell
+      ghc
+      stack
+      hlint
+
       # unfree
       slack
       zoom-us
