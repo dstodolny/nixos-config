@@ -1,7 +1,8 @@
 # -*- mode:conf -*-
 [user]
-	email = dom@dmk.st
+	email = dominik@stodolny.org
 	name = Dominik Stodolny
+	signingkey = 0D5591D3B4BB7818
 
 [color]
 	ui = true
