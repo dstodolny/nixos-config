@@ -16,7 +16,7 @@
       defaultCacheTtlSsh = 86400;
       maxCacheTtlSsh = 86400;
       extraConfig = ''
-        pinentry-program ~/.nix-profile/bin/pinentry-emacs
+        pinentry-program "${pkgs.pinentry_emacs}/bin/pinentry-emacs"
         allow-emacs-pinentry
         allow-loopback-pinentry
       '';
@@ -43,10 +43,11 @@
     packages = with pkgs; [
       firefox
       chromium
-      pinentry_emacs
       pass-otp
       nodejs-10_x
       mlocate
+      gnupg
+      pinentry_emacs
 
       # anki
       anki
