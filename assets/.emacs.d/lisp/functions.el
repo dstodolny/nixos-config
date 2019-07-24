@@ -399,4 +399,7 @@ If URL is nil, use URL at point."
     (insert (format " cd '%s' && youtube-dl " directory) url)
     (eshell-send-input)))
 
+(defun dnixty/insert-current-date () (interactive)
+       (insert (shell-command-to-string "echo -n $(date \"+%Y-%m-%d %H:%M\")")))
+
 (provide 'functions)
