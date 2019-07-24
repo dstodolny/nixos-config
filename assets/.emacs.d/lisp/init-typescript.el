@@ -18,6 +18,11 @@
 (setq tide-tsserver-executable "~/.local/npm/bin/tsserver")
 
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+
+;; Prettier
+(add-hook 'web-mode-hook 'prettier-js-mode)
+(add-hook 'css-mode-hook 'prettier-js-mode)
+
 (add-hook 'web-mode-hook
           (lambda ()
             (when (string-equal "tsx" (file-name-extension buffer-file-name))
