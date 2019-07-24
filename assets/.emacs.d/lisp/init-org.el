@@ -75,50 +75,22 @@
 ;;  `("w" "Web link" entry (file+headline ,(car org-agenda-files) "Links")
 ;;    "* %?%a\n:SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))\n"))
 
-(setq org-capture-templates '(("t" "TODO [inbox]" entry
+(setq org-capture-templates '(("c" "capture [inbox]" entry
                                (file+headline "~/personal/gtd/inbox.org.gpg" "Tasks")
-                               "* TODO %i%?")
+                               "* %i%?")
                               ("w" "Web link [inbox]" entry
                                (file+headline "~/personal/gtd/inbox.org.gpg" "Links")
                                "* %?%a\n:SCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+1d\"))\n")
-                              ("T" "Tickler" entry
+                              ("t" "Tickler" entry
                                (file+headline "~/personal/gtd/tickler.org.gpg" "Tickler")
                                "* %i%? \n %U")))
 
 (setq org-agenda-custom-commands
-      '(("o" "At the office" tags-todo "@office"
-         ((org-agenda-overriding-header "Office")
-          (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))
-        ("i" "On the Internet" tags-todo "@internet"
-         ((org-agenda-overriding-header "Internet")
-          (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))
-        ("E" "Errands" tags-todo "@errands"
-         ((org-agenda-overriding-header "Errands")
-          (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))
-        ("A" "Anywhere" tags-todo "@anywhere"
-         ((org-agenda-overriding-header "Anywhere")
-          (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))
-        ("h" "At home" tags-todo "@home"
-         ((org-agenda-overriding-header "Home")
-          (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))
-        ("g" "On Guix" tags-todo "@guix"
-         ((org-agenda-overriding-header "Guix")
-          (org-agenda-skip-function #'dnixty/my-org-agenda-skip-all-siblings-but-first)))))
-
-(defun dnixty/my-org-agenda-skip-all-siblings-but-first ()
-  "Skip all but the first non-done entry."
-  (let (should-skip-entry)
-    (unless (org-current-is-todo)
-      (setq should-skip-entry t))
-    (save-excursion
-      (while (and (not should-skip-entry) (org-goto-sibling t))
-        (when (org-current-is-todo)
-          (setq should-skip-entry t))))
-    (when should-skip-entry
-      (or (outline-next-heading)
-          (goto-char (point-max))))))
-
-(defun org-current-is-todo ()
-  (string= "TODO" (org-get-todo-state)))
+      '(("o" "At the office" tags-todo "@office")
+        ("i" "On the Internet" tags-todo "@internet")
+        ("E" "Errands" tags-todo "@errands")
+        ("A" "Anywhere" tags-todo "@anywhere")
+        ("h" "At home" tags-todo "@home")
+        ("n" "On NixOs" tags-todo "@nixos")))
 
 (provide 'init-org)
