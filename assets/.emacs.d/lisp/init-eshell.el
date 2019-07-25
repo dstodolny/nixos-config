@@ -73,8 +73,8 @@
 ;;; REVIEW: eshell/date does not support many options from GNU date.
 ;;; > date +%Z
 ;;; See #29157.
-(when (< emacs-major-version 27)
-  (require 'patch-eshell-26))
+;(when (< emacs-major-version 27)
+;  (require 'patch-eshell-26))
 
 ;;; TODO: Change face of eshell/* commands in commandline to avoid confusion
 ;;; with system programs.
