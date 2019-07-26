@@ -15,7 +15,6 @@
   home = {
     file = {
       "bin".source = ../assets/bin;
-      ".emacs.d".source = ../assets/emacs.d;
     };
   };
 }

@@ -16,6 +16,7 @@ in
   };
   config = mkIf cfg.enable (mkMerge [
     {
+      home.file.".emacs.d".source = ../../assets/emacs.d;
       programs.emacs = {
         enable = true;
         extraPackages = epkgs: with epkgs; [
