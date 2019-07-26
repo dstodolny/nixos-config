@@ -87,10 +87,10 @@ in
           textconv = "gpg -d --quiet --yes --compress-algo=none --no-encrypt-to";
         };
       };
+      ignores = [
+        "*.o" "*.a" "*.la" "*.so"
+        "*~" "#*#" ".makefile" ".clean"
+      ];
     };
   };
-  # ignores = [
-  #   "*.o" "*.a" "*.la" "*.so"
-  #   "*~" "#*#" ".makefile" ".clean"
-  # ];
 }
