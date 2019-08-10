@@ -167,6 +167,11 @@
 (nconc package-selected-packages '(circe))
 (with-eval-after-load 'circe (require 'init-circe))
 
+;;; Ledger
+(nconc package-selected-packages '(ledger-mode))
+(when (require 'ledger-mode nil t)
+  (add-to-list 'auto-mode-alist '("\\.ldg$" . ledger-mode)))
+
 ;;; Lisp
 (nconc package-selected-packages '(lispy lispyville rainbow-delimiters geiser slime))
 (with-eval-after-load 'lisp-mode (require 'init-lisp))

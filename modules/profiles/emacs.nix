@@ -20,13 +20,9 @@ in
       programs.emacs = {
         enable = true;
         extraPackages = epkgs: with epkgs; [
-          company
-          pinentry
-          rainbow-mode
-          undo-tree
-          pdf-tools
           bash-completion
           circe
+          company
           csv-mode
           daemons
           desktop-environment
@@ -65,13 +61,17 @@ in
           org-bullets
           org-plus-contrib
           orgit
-          pulseaudio-control
+          pdf-tools
+          pinentry
           prettier-js
+          pulseaudio-control
           rainbow-delimiters
+          rainbow-mode
           slime
           slime-company
           tide
           typescript-mode
+          undo-tree
           web-mode
           ztree
         ];
