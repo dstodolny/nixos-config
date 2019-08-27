@@ -16,17 +16,15 @@ in
   };
   config = mkIf cfg.enable {
     profiles.gpg.enable = true;
-    profiles.emacs.enable = true;
 
+    xsession.enable = true;
+    xsession.windowManager.command = "{pkgs.dwm}/bin/dwm";
     home.file = {
-      ".Xresources".source = ../../assets/Xresources;
-      ".conkyrc".source = ../../assets/conkyrc;
       ".xsession" = {
         source = ../../assets/xsession;
         executable = true;
       };
       ".xinitrc".source = ../../assets/xinitrc;
-      ".exwm".source = ../../assets/exwm;
     };
     services = {
       network-manager-applet.enable = true;
@@ -44,10 +42,27 @@ in
     programs = {
       firefox.enable = true;
     };
+    nixpkgs.config.packageOverrides = pkgs: {
+      dwm = pkgs.dwm.override {
+        patches = [
+           ../../assets/dwm/dwm-theme.diff
+           ../../assets/dwm/dwm-modkey.diff
+        ];
+      };
+      st = pkgs.st.override {
+        patches = [
+          ../../assets/st/st-scrollback-0.8.2.diff
+          ../../assets/st/st-scrollback-mouse-0.8.2.diff
+          ../../assets/st/st-visual.diff
+          ../../assets/st/st-keys.diff
+        ];
+      };
+    };
     home.packages = with pkgs; [
+      dwm
+      dmenu
+      st
       pass-otp
-      dzen2
-      conky
       mpv
     ];
   };

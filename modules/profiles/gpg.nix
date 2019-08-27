@@ -16,7 +16,10 @@ in
   };
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [ gnupg ];
+      packages = with pkgs; [
+        gnupg
+        pinentry
+      ];
       sessionVariables = {
         GPG_TTY = "$(tty)";
       };
@@ -30,6 +33,9 @@ in
         maxCacheTtl = 86400;
         defaultCacheTtlSsh = 86400;
         maxCacheTtlSsh = 86400;
+        extraConfig = ''
+	  pinentry-prorgam "${pkgs.pinentry}/bin/pinentry"
+        '';
       };
     };
   };

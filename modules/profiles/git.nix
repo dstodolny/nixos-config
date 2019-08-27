@@ -21,7 +21,7 @@ in
       userEmail = "dominik@stodolny.org";
       signing = {
         key = "0D5591D3B4BB7818";
-        signByDefault = true;
+        signByDefault = false;
       };
       aliases = {
         b = "branch --color -v";

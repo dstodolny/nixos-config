@@ -17,7 +17,6 @@ in
   config = mkIf cfg.enable (mkMerge [
     {
       profiles.git.enable = true;
-      profiles.emacs.enable = true;
       home.packages = with pkgs; [
         binutils
         cmake

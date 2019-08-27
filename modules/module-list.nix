@@ -5,7 +5,6 @@
     ./profiles/dev.haskell.nix
     ./profiles/dev.javascript.nix
     ./profiles/dev.python.nix
-    ./profiles/emacs.nix
     ./profiles/finance.nix
     ./profiles/git.nix
     ./profiles/gpg.nix
