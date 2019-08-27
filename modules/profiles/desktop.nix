@@ -53,6 +53,7 @@ in
         patches = [
           ../../assets/st/st-scrollback-0.8.2.diff
           ../../assets/st/st-scrollback-mouse-0.8.2.diff
+          ../../assets/st/st-bold-is-not-bright-20190127-3be4cf1.diff
           ../../assets/st/st-visual.diff
           ../../assets/st/st-keys.diff
         ];
