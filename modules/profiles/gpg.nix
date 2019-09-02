@@ -34,7 +34,7 @@ in
         defaultCacheTtlSsh = 86400;
         maxCacheTtlSsh = 86400;
         extraConfig = ''
-	  pinentry-prorgam "${pkgs.pinentry}/bin/pinentry"
+pinentry-program "${pkgs.pinentry}/bin/pinentry"
         '';
       };
     };

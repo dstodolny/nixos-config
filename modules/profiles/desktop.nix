@@ -25,6 +25,7 @@ in
         executable = true;
       };
       ".xinitrc".source = ../../assets/xinitrc;
+      ".xprofile".source = ../../assets/xprofile;
     };
     services = {
       network-manager-applet.enable = true;

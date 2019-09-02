@@ -4,6 +4,14 @@ git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\/@\1/'
 }
 
+alias SS="sudo systemctl"
+alias f="$FILE"
+alias g="git"
+alias v="$EDITOR"
+alias ls="ls -hN --color=auto --group-directories-first"
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"
+
 if command -v fzf-share >/dev/null; then
         source "$(fzf-share)/key-bindings.bash"
 fi

@@ -7,6 +7,8 @@
     ".profile".source = ../assets/profile;
     ".bashrc".source = ../assets/bashrc;
     ".config/nvim".source = ../assets/nvim;
+    ".config/zathura/zathurarc".source = ../assets/zathurarc;
+    ".config/vifm/vifmrc".source = ../assets/vifmrc;
   };
   programs.fzf.enable = true;
   programs.neovim = {
@@ -15,6 +17,9 @@
     vimAlias = true;
     configure = {
       customRC = ''
+        syntax on
+        filetype plugin indent on
+
         colorscheme gotham
         let mapleader=','
 
@@ -38,6 +43,7 @@
 
         let g:airline_theme='gotham'
         let g:AutoPairsMultilineClose=0
+        let g:haskell_classic_highlighting = 1
 
         command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!{.git,node_modules,build,dist,*/node_modules}/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
@@ -83,11 +89,20 @@
         vim-nix
         fzf-vim
         fzfWrapper
+        haskell-vim
       ];
     };
   };
   home.packages = with pkgs; [
+    atool
     openssl
     wget
+    zathura
+    vifm
+    sxiv
+    tree
+    sc-im
+    w3m
+    mpd
   ];
 }

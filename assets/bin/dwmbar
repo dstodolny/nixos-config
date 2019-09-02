@@ -1,0 +1,22 @@
+#!/bin/sh
+
+trap 'update' 5
+delim="|"
+
+status() { \
+        cat /sys/class/power_supply/BAT/capacity;
+        echo "%"
+        echo "$delim"
+        date '+%Y %b %d (%a) %I:%M%p'
+}
+
+update() { \
+        xsetroot -name "$(status | tr '\n' ' ')" &
+        wait
+}
+
+while :; do
+        update
+        sleep 1m &
+        wait
+done

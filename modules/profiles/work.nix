@@ -21,5 +21,8 @@ in
       slack
       zoom-us
     ];
+    programs.vscode = {
+      enable = true;
+    };
   };
 }
