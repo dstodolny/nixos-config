@@ -6,7 +6,6 @@
   home.file = {
     ".profile".source = ../assets/profile;
     ".bashrc".source = ../assets/bashrc;
-    ".config/nvim".source = ../assets/nvim;
     ".config/zathura/zathurarc".source = ../assets/zathurarc;
     ".config/vifm/vifmrc".source = ../assets/vifmrc;
   };

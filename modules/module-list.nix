@@ -10,5 +10,6 @@
     ./profiles/gpg.nix
     ./profiles/laptop.nix
     ./profiles/work.nix
+    ./profiles/vim.nix
   ];
 }
