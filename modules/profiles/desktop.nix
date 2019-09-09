@@ -30,7 +30,7 @@ in
     services = {
       network-manager-applet.enable = true;
       redshift = {
-        enable = true;
+        enable = false;
         latitude = "51.5094";
         longitude = "0.1365";
         brightness = {
@@ -46,17 +46,12 @@ in
     nixpkgs.config.packageOverrides = pkgs: {
       dwm = pkgs.dwm.override {
         patches = [
-           ../../assets/dwm/dwm-theme.diff
-           ../../assets/dwm/dwm-modkey.diff
+          ../../assets/dwm/dwm-custom-6.2.diff
         ];
       };
       st = pkgs.st.override {
         patches = [
-          ../../assets/st/st-scrollback-0.8.2.diff
-          ../../assets/st/st-scrollback-mouse-0.8.2.diff
-          ../../assets/st/st-bold-is-not-bright-20190127-3be4cf1.diff
-          ../../assets/st/st-visual.diff
-          ../../assets/st/st-keys.diff
+          ../../assets/st/st-custom-0.8.2.diff
         ];
       };
     };

@@ -27,7 +27,8 @@ in
           syntax on
           filetype plugin indent on
 
-          colorscheme gotham
+          colorscheme iceberg
+          set termguicolors
           let mapleader=','
 
           set autowrite
@@ -48,7 +49,7 @@ in
           set tabstop=2
           set undofile
 
-          let g:airline_theme='gotham'
+          let g:airline_theme='iceberg'
           let g:AutoPairsMultilineClose=0
           let g:haskell_classic_highlighting = 1
 

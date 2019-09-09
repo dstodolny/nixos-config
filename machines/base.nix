@@ -19,6 +19,7 @@
     sxiv
     tree
     sc-im
+    pstree
     w3m
     mpd
   ];
