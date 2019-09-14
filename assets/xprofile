@@ -1,8 +1,3 @@
 #!/bin/sh
 
-dwmbar &
-
-while pgrep -x mpd; do
-        mpc idle >/dev/nll 2>%1
-        refbar
-done &
+slstatus &

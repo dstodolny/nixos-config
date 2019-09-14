@@ -49,18 +49,30 @@ in
           ../../assets/dwm/dwm-custom-6.2.diff
         ];
       };
+      dmenu = pkgs.dmenu.override {
+        patches = [
+          ../../assets/dmenu/dmenu-custom-4.9.diff
+        ];
+      };
       st = pkgs.st.override {
         patches = [
           ../../assets/st/st-custom-0.8.2.diff
         ];
       };
+      surf = pkgs.surf.override {
+        patches = [
+          ../../assets/surf/surf-0.6-chromekeys.diff
+        ];
+      };
     };
     home.packages = with pkgs; [
-      dwm
+      (slstatus.override { conf = builtins.readFile ../../assets/slstatus/config.def.h; })
       dmenu
-      st
-      pass-otp
+      dwm
       mpv
+      pass-otp
+      st
+      surf
     ];
   };
 }

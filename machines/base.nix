@@ -11,16 +11,11 @@
   };
   programs.fzf.enable = true;
   home.packages = with pkgs; [
-    atool
     openssl
     wget
     zathura
     vifm
     sxiv
-    tree
-    sc-im
-    pstree
-    w3m
-    mpd
+    ripgrep
   ];
 }
