@@ -9,6 +9,7 @@
     ./profiles/git.nix
     ./profiles/gpg.nix
     ./profiles/laptop.nix
+    ./profiles/latex.nix
     ./profiles/work.nix
     ./profiles/vim.nix
   ];

@@ -12,6 +12,8 @@ alias ls="ls -hN --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 
+export HISTSIZE=10000
+
 if command -v fzf-share >/dev/null; then
         source "$(fzf-share)/key-bindings.bash"
 fi

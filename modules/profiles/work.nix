@@ -23,6 +23,9 @@ in
     ];
     programs.vscode = {
       enable = true;
+      userSettings = {
+        "workbench.colorTheme" = "Iceberg";
+      };
     };
   };
 }

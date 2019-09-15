@@ -13,6 +13,7 @@
   };
   profiles.work.enable = true;
   profiles.finance.enable = true;
+  profiles.latex.enable = true;
 
   home = {
     file = {

@@ -59,11 +59,6 @@ in
           ../../assets/st/st-custom-0.8.2.diff
         ];
       };
-      surf = pkgs.surf.override {
-        patches = [
-          ../../assets/surf/surf-0.6-chromekeys.diff
-        ];
-      };
     };
     home.packages = with pkgs; [
       (slstatus.override { conf = builtins.readFile ../../assets/slstatus/config.def.h; })
@@ -72,7 +67,6 @@ in
       mpv
       pass-otp
       st
-      surf
     ];
   };
 }
