@@ -1,7 +1,8 @@
 export PS1="\[\e[1m\](\[\e[36m\]\u\[\e[97m\]@\[\e[36m\]\h\[\e[97m\])[\[\e[32m\]\w\[\e[97m\]\$(git_branch)]\n>\[\e[0m\] "
 
 git_branch() {
-        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\/@\1/'
+
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\/@\1/'
 }
 
 alias SS="sudo systemctl"
@@ -15,5 +16,5 @@ alias diff="diff --color=auto"
 export HISTSIZE=10000
 
 if command -v fzf-share >/dev/null; then
-        source "$(fzf-share)/key-bindings.bash"
+  source "$(fzf-share)/key-bindings.bash"
 fi

@@ -1,9 +1,9 @@
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..22e9d18
+index 0000000..9879d9c
 --- /dev/null
 +++ b/config.h
-@@ -0,0 +1,126 @@
+@@ -0,0 +1,128 @@
 +/* See LICENSE file for copyright and license details. */
 +
 +/* appearance */
@@ -74,6 +74,7 @@ index 0000000..22e9d18
 +static const char *termcmd[]  = { "st", NULL };
 +static const char *dmenu_pass[] = { "dmenu_pass", NULL };
 +static const char *slockcmd[] = { "slock", NULL };
++static const char *dmenu_websearch[] = { "dmenu_websearch", NULL };
 +
 +static Key keys[] = {
 +	/* modifier                     key        function        argument */
@@ -81,6 +82,7 @@ index 0000000..22e9d18
 +	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 +  { MODKEY,                       XK_p,      spawn,          {.v = dmenu_pass } },
 +  { MODKEY,                       XK_z,      spawn,          {.v = slockcmd } },
++  { MODKEY,                       XK_o,      spawn,          {.v = dmenu_websearch } },
 +	{ MODKEY,                       XK_b,      togglebar,      {0} },
 +	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 +	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -90,7 +92,7 @@ index 0000000..22e9d18
 +	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 +	{ MODKEY,                       XK_Return, zoom,           {0} },
 +	{ MODKEY,                       XK_Tab,    view,           {0} },
-+	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
++	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 +	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 +	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 +	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },

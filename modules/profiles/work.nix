@@ -20,12 +20,7 @@ in
       chromium
       slack
       zoom-us
+      vscode
     ];
-    programs.vscode = {
-      enable = true;
-      userSettings = {
-        "workbench.colorTheme" = "Iceberg";
-      };
-    };
   };
 }

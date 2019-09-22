@@ -57,8 +57,11 @@ in
         set smartindent
         set splitbelow
         set splitright
+        set shiftwidth=2
+        set softtabstop=2
         set tabstop=2
         set undofile
+        set wrap
 
         let g:airline_theme='iceberg'
         let g:AutoPairsMultilineClose=0
@@ -89,8 +92,6 @@ in
         nnoremap <C-h> <C-w>h
         nnoremap <C-l> <C-w>l
         nmap <silent> // :nohlsearch<cr>
-        nnoremap p p=`]<C-o>
-        nnoremap P P=`]<C-o>
         nnoremap <silent> Q :call CloseWindowOrKillBuffer()<CR>
         map <C-P> :FZF<CR>
         map <C-T> :Buffers<CR>

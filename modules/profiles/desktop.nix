@@ -59,14 +59,21 @@ in
           ../../assets/st/st-custom-0.8.2.diff
         ];
       };
+      surf = pkgs.surf.override {
+        patches = [
+          ../../assets/surf/surf-custom-2.0.diff
+        ];
+      };
     };
     home.packages = with pkgs; [
       (slstatus.override { conf = builtins.readFile ../../assets/slstatus/config.def.h; })
       dmenu
       dwm
+      gimp
       mpv
       pass-otp
       st
+      surf
     ];
   };
 }
