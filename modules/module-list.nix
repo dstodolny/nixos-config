@@ -13,5 +13,6 @@
     ./profiles/newsboat.nix
     ./profiles/vim.nix
     ./profiles/work.nix
+    ./profiles/zsh.nix
   ];
 }

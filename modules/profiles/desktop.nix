@@ -46,27 +46,27 @@ in
     nixpkgs.config.packageOverrides = pkgs: {
       dwm = pkgs.dwm.override {
         patches = [
-          ../../assets/dwm/dwm-custom-6.2.diff
+          ../../assets/suckless/dwm/dwm-custom-6.2.diff
         ];
       };
       dmenu = pkgs.dmenu.override {
         patches = [
-          ../../assets/dmenu/dmenu-custom-4.9.diff
+          ../../assets/suckless/dmenu/dmenu-custom-4.9.diff
         ];
       };
       st = pkgs.st.override {
         patches = [
-          ../../assets/st/st-custom-0.8.2.diff
+          ../../assets/suckless/st/st-custom-0.8.2.diff
         ];
       };
       surf = pkgs.surf.override {
         patches = [
-          ../../assets/surf/surf-custom-2.0.diff
+          ../../assets/suckless/surf/surf-custom-2.0.diff
         ];
       };
     };
     home.packages = with pkgs; [
-      (slstatus.override { conf = builtins.readFile ../../assets/slstatus/config.def.h; })
+      (slstatus.override { conf = builtins.readFile ../../assets/suckless/slstatus/config.def.h; })
       dmenu
       dwm
       gimp

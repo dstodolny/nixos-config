@@ -15,6 +15,7 @@
   profiles.finance.enable = true;
   profiles.latex.enable = true;
   profiles.newsboat.enable = true;
+  profiles.zsh.enable = true;
 
   home = {
     file = {

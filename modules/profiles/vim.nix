@@ -69,17 +69,19 @@ in
         command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!{.git,node_modules,build,dist,*/node_modules}/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
         function! CloseWindowOrKillBuffer()
-        let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
-        if matchstr(expand("%"), 'NERD') == 'NERD'
-        wincmd c
-        return
-        endif
-        if number_of_windows_to_this_buffer > 1
-        wincmd c
-        else
-        bdelete
-        endif
+          let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+          if matchstr(expand("%"), 'NERD') == 'NERD'
+            wincmd c
+            return
+          endif
+          if number_of_windows_to_this_buffer > 1
+            wincmd c
+          else
+            bdelete
+          endif
         endfunction
+
+        autocmd BufWritePre * %s/\s\+$//e
 
         nmap 0 ^
         imap jk <esc>
