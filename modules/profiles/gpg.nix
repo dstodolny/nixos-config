@@ -23,7 +23,6 @@ in
       sessionVariables = {
         GPG_TTY = "$(tty)";
       };
-      file.".gnupg/gpg.conf".source = ../../assets/gpg.conf;
     };
     services = {
       gpg-agent = {

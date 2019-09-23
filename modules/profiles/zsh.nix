@@ -58,6 +58,14 @@ in
         zstyle ':completion:*' menu select
         zmodload zsh/complist
       '';
+      shellAliases = {
+        SS = "sudo systemctl";
+        f = "$FILE";
+        g = "git";
+        v = "$EDITOR";
+        ls = "ls -hN --color=auto --group-directories-first";
+        diff = "diff --color=auto";
+      };
     };
   };
 }

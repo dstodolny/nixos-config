@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 6d3135e..9600d76 100644
+index 6d3135e..c35dab1 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -1,10 +1,25 @@
@@ -108,7 +108,7 @@ index 6d3135e..9600d76 100644
  
  	{ MODKEY,                GDK_KEY_l,      navigate,   { .i = +1 } },
  	{ MODKEY,                GDK_KEY_h,      navigate,   { .i = -1 } },
-@@ -117,27 +149,28 @@ static Key keys[] = {
+@@ -117,40 +149,41 @@ static Key keys[] = {
  	/* Currently we have to use scrolling steps that WebKit2GTK+ gives us
  	 * d: step down, u: step up, r: step right, l:step left
  	 * D: page down, U: page up */
@@ -153,8 +153,29 @@ index 6d3135e..9600d76 100644
  
  	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_a,      togglecookiepolicy, { 0 } },
  	{ 0,                     GDK_KEY_F11,    togglefullscreen, { 0 } },
+ 	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_o,      toggleinspector, { 0 } },
+ 
+-	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_c,      toggle,     { .i = CaretBrowsing } },
+-	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_f,      toggle,     { .i = FrameFlattening } },
+-	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_g,      toggle,     { .i = Geolocation } },
+-	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_s,      toggle,     { .i = JavaScript } },
+-	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_i,      toggle,     { .i = LoadImages } },
+-	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_v,      toggle,     { .i = Plugins } },
+-	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_b,      toggle,     { .i = ScrollBars } },
+-	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_m,      toggle,     { .i = Style } },
++	/* { MODKEY|GDK_SHIFT_MASK, GDK_KEY_c,      toggle,     { .i = CaretBrowsing } }, */
++	/* { MODKEY|GDK_SHIFT_MASK, GDK_KEY_f,      toggle,     { .i = FrameFlattening } }, */
++	/* { MODKEY|GDK_SHIFT_MASK, GDK_KEY_g,      toggle,     { .i = Geolocation } }, */
++	/* { MODKEY|GDK_SHIFT_MASK, GDK_KEY_s,      toggle,     { .i = JavaScript } }, */
++	/* { MODKEY|GDK_SHIFT_MASK, GDK_KEY_i,      toggle,     { .i = LoadImages } }, */
++	/* { MODKEY|GDK_SHIFT_MASK, GDK_KEY_v,      toggle,     { .i = Plugins } }, */
++	/* { MODKEY|GDK_SHIFT_MASK, GDK_KEY_b,      toggle,     { .i = ScrollBars } }, */
++	/* { MODKEY|GDK_SHIFT_MASK, GDK_KEY_m,      toggle,     { .i = Style } }, */
+ };
+ 
+ /* button definitions */
 diff --git a/surf.c b/surf.c
-index 93a1629..700f4c0 100644
+index 93a1629..202d3ca 100644
 --- a/surf.c
 +++ b/surf.c
 @@ -128,6 +128,11 @@ typedef struct {
@@ -162,8 +183,8 @@ index 93a1629..700f4c0 100644
  } Button;
  
 +typedef struct {
-+        char *token;
-+        char *uri;
++  char *token;
++  char *uri;
 +} SearchEngine;
 +
  typedef struct {

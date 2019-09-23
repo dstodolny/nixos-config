@@ -15,7 +15,10 @@ in
     };
   };
   config = mkIf cfg.enable {
-    profiles.gpg.enable = true;
+    profiles = {
+      gpg.enable = true;
+      suckless.enable = true;
+    };
 
     xsession.enable = true;
     xsession.windowManager.command = "{pkgs.dwm}/bin/dwm";
@@ -43,37 +46,10 @@ in
     programs = {
       firefox.enable = true;
     };
-    nixpkgs.config.packageOverrides = pkgs: {
-      dwm = pkgs.dwm.override {
-        patches = [
-          ../../assets/suckless/dwm/dwm-custom-6.2.diff
-        ];
-      };
-      dmenu = pkgs.dmenu.override {
-        patches = [
-          ../../assets/suckless/dmenu/dmenu-custom-4.9.diff
-        ];
-      };
-      st = pkgs.st.override {
-        patches = [
-          ../../assets/suckless/st/st-custom-0.8.2.diff
-        ];
-      };
-      surf = pkgs.surf.override {
-        patches = [
-          ../../assets/suckless/surf/surf-custom-2.0.diff
-        ];
-      };
-    };
     home.packages = with pkgs; [
-      (slstatus.override { conf = builtins.readFile ../../assets/suckless/slstatus/config.def.h; })
-      dmenu
-      dwm
       gimp
       mpv
-      pass-otp
-      st
-      surf
+      sxiv
     ];
   };
 }

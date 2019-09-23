@@ -11,8 +11,11 @@
     ./profiles/laptop.nix
     ./profiles/latex.nix
     ./profiles/newsboat.nix
+    ./profiles/suckless.nix
+    ./profiles/sxhkd.nix
     ./profiles/vim.nix
     ./profiles/work.nix
+    ./profiles/zathura.nix
     ./profiles/zsh.nix
   ];
 }
