@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 6d3135e..c35dab1 100644
+index 6d3135e..1f02c14 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -1,10 +1,25 @@
@@ -82,7 +82,7 @@ index 6d3135e..c35dab1 100644
  /* styles */
  /*
   * The iteration will stop at the first match, beginning at the beginning of
-@@ -101,15 +130,18 @@ static SiteStyle styles[] = {
+@@ -101,15 +130,19 @@ static SiteStyle styles[] = {
   */
  static Key keys[] = {
  	/* modifier              keyval          function    arg */
@@ -93,6 +93,7 @@ index 6d3135e..c35dab1 100644
 +	{ 0,                     GDK_KEY_f,      spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
 +	{ 0,                     GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
 +  { 0,                     GDK_KEY_m,      spawn,      BM_ADD("_SURF_URI") },
++  { 0,                     GDK_KEY_w,      playexternal, {0 } },
 +
 +  { 0,                     GDK_KEY_i,      insert,     { .i = 1 } },
 +	{ 0,                     GDK_KEY_Escape, insert,     { .i = 0 } },
@@ -108,7 +109,7 @@ index 6d3135e..c35dab1 100644
  
  	{ MODKEY,                GDK_KEY_l,      navigate,   { .i = +1 } },
  	{ MODKEY,                GDK_KEY_h,      navigate,   { .i = -1 } },
-@@ -117,40 +149,41 @@ static Key keys[] = {
+@@ -117,40 +150,41 @@ static Key keys[] = {
  	/* Currently we have to use scrolling steps that WebKit2GTK+ gives us
  	 * d: step down, u: step up, r: step right, l:step left
  	 * D: page down, U: page up */
@@ -175,7 +176,7 @@ index 6d3135e..c35dab1 100644
  
  /* button definitions */
 diff --git a/surf.c b/surf.c
-index 93a1629..202d3ca 100644
+index 93a1629..9bf0519 100644
 --- a/surf.c
 +++ b/surf.c
 @@ -128,6 +128,11 @@ typedef struct {
@@ -206,15 +207,16 @@ index 93a1629..202d3ca 100644
  
  /* Hotkeys */
  static void pasteuri(GtkClipboard *clipboard, const char *text, gpointer d);
-@@ -217,6 +224,7 @@ static void togglefullscreen(Client *c, const Arg *a);
+@@ -217,6 +224,8 @@ static void togglefullscreen(Client *c, const Arg *a);
  static void togglecookiepolicy(Client *c, const Arg *a);
  static void toggleinspector(Client *c, const Arg *a);
  static void find(Client *c, const Arg *a);
 +static void insert(Client *c, const Arg *a);
++static void playexternal(Client *c, const Arg *a);
  
  /* Buttons */
  static void clicknavigate(Client *c, const Arg *a, WebKitHitTestResult *h);
-@@ -477,7 +485,16 @@ loaduri(Client *c, const Arg *a)
+@@ -477,7 +486,16 @@ loaduri(Client *c, const Arg *a)
  		url = g_strdup_printf("file://%s", path);
  		free(path);
  	} else {
@@ -232,7 +234,7 @@ index 93a1629..202d3ca 100644
  	}
  
  	setatom(c, AtomUri, url);
-@@ -1109,7 +1126,11 @@ winevent(GtkWidget *w, GdkEvent *e, Client *c)
+@@ -1109,7 +1127,11 @@ winevent(GtkWidget *w, GdkEvent *e, Client *c)
  		updatetitle(c);
  		break;
  	case GDK_KEY_PRESS:
@@ -245,7 +247,7 @@ index 93a1629..202d3ca 100644
  			for (i = 0; i < LENGTH(keys); ++i) {
  				if (gdk_keyval_to_lower(e->key.keyval) ==
  				    keys[i].keyval &&
-@@ -1461,6 +1482,22 @@ destroywin(GtkWidget* w, Client *c)
+@@ -1461,6 +1483,22 @@ destroywin(GtkWidget* w, Client *c)
  		gtk_main_quit();
  }
  
@@ -268,7 +270,7 @@ index 93a1629..202d3ca 100644
  void
  pasteuri(GtkClipboard *clipboard, const char *text, gpointer d)
  {
-@@ -1624,6 +1661,12 @@ find(Client *c, const Arg *a)
+@@ -1624,6 +1662,12 @@ find(Client *c, const Arg *a)
  	}
  }
  
@@ -280,4 +282,20 @@ index 93a1629..202d3ca 100644
 +
  void
  clicknavigate(Client *c, const Arg *a, WebKitHitTestResult *h)
+ {
+@@ -1648,6 +1692,15 @@ clickexternplayer(Client *c, const Arg *a, WebKitHitTestResult *h)
+ 	spawn(c, &arg);
+ }
+ 
++void
++playexternal(Client *c, const Arg *a)
++{
++  Arg arg;
++
++  arg = (Arg)VIDEOPLAY(geturi(c));
++  spawn(c, &arg);
++}
++
+ int
+ main(int argc, char *argv[])
  {

@@ -7,13 +7,14 @@
     ".profile".source = ../assets/profile;
   };
   home.packages = with pkgs; [
-    htop
     fzf
-    openssl
-    pass-otp
-    wget
-    ripgrep
-    pandoc
+    htop
     lf
+    openssl
+    pandoc
+    pass-otp
+    ripgrep
+    wget
+    youtube-dl
   ];
 }
