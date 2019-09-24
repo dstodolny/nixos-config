@@ -58,6 +58,13 @@ in
         zstyle ':completion:*' menu select
         zmodload zsh/complist
       '';
+      sessionVariables = {
+        EDITOR = "nvim";
+        TERMINAL = "st";
+        BROWSER = "tabbed -r 2 surf -e whatever";
+        READER = "zathura";
+        FILE = "lf";
+      };
       shellAliases = {
         SS = "sudo systemctl";
         f = "$FILE";

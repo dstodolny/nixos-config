@@ -21,19 +21,12 @@ in
     };
 
     xsession.enable = true;
-    xsession.windowManager.command = "{pkgs.dwm}/bin/dwm";
-    home.file = {
-      ".xsession" = {
-        source = ../../assets/xsession;
-        executable = true;
-      };
-      ".xinitrc".source = ../../assets/xinitrc;
-      ".xprofile".source = ../../assets/xprofile;
-    };
+    xsession.windowManager.command = "exec ${pkgs.dwm}/bin/dwm";
+    xsession.profileExtra = "slstatus &";
     services = {
       network-manager-applet.enable = true;
       redshift = {
-        enable = false;
+        enable = true;
         latitude = "51.5094";
         longitude = "0.1365";
         brightness = {

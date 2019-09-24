@@ -3,18 +3,20 @@
 {
   imports = [ ../modules/module-list.nix ];
   programs.home-manager.enable = true;
-  home.file = {
-    ".profile".source = ../assets/profile;
+  home = {
+    file = {
+      "bin".source = ../assets/bin;
+    };
+    packages = with pkgs; [
+      fzf
+      htop
+      lf
+      openssl
+      pandoc
+      pass-otp
+      ripgrep
+      wget
+      youtube-dl
+    ];
   };
-  home.packages = with pkgs; [
-    fzf
-    htop
-    lf
-    openssl
-    pandoc
-    pass-otp
-    ripgrep
-    wget
-    youtube-dl
-  ];
 }

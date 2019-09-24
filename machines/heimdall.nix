@@ -20,10 +20,4 @@
     zsh.enable = true;
     zathura.enable = true;
   };
-
-  home = {
-    file = {
-      "bin".source = ../assets/bin;
-    };
-  };
 }
