@@ -50,6 +50,7 @@ in
       gimp
       mpv
       sxiv
+      xclip
     ];
   };
 }

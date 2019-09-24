@@ -25,7 +25,7 @@ in
         "super + d" = "dmenu_run";
         "super + s" = "st -e htop";
         "super + c" = "st -e nvim ~/personal/gtd/inbox.md";
-        "super + shift + w" = "tabbed -c surf -e";
+        "super + shift + w" = "tabbed -r 2 surf -e whatever";
       };
     };
   };
