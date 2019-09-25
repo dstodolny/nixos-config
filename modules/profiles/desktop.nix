@@ -22,6 +22,7 @@ in
 
     xsession.enable = true;
     xsession.windowManager.command = "exec ${pkgs.dwm}/bin/dwm";
+    # xsession.initExtra = "exec emacsclient -c";
     xsession.profileExtra = "slstatus &";
     services = {
       network-manager-applet.enable = true;

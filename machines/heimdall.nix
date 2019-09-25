@@ -6,18 +6,19 @@
   ];
 
   profiles = {
-    laptop.enable = true;
     dev = {
       haskell.enable = true;
       javascript.enable = true;
       python.enable = true;
     };
-    work.enable = true;
+    emacs.enable = true;
     finance.enable = true;
+    laptop.enable = true;
     latex.enable = true;
     newsboat.enable = true;
     sxhkd.enable = true;
-    zsh.enable = true;
+    work.enable = true;
     zathura.enable = true;
+    zsh.enable = true;
   };
 }

@@ -21,11 +21,13 @@ in
         "super + Return" = "st";
         "super + n" = "st -e newsboat";
         "super + p" = "dmenu_pass";
-        "super + x" = "slock & xset dpms force off";
         "super + d" = "dmenu_run";
+        "super + e" = "emacsclient -c";
         "super + s" = "st -e htop";
         "super + c" = "st -e nvim ~/personal/gtd/inbox.md";
+        "super + shift + e" = "systemctl --user restart emacs";
         "super + shift + w" = "tabbed -r 2 surf -e whatever";
+        "super + shift + x" = "slock & xset dpms force off";
       };
     };
   };

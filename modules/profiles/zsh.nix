@@ -66,6 +66,7 @@ in
         FILE = "lf";
       };
       shellAliases = {
+        e = "emacsclient";
         SS = "sudo systemctl";
         f = "$FILE";
         g = "git";

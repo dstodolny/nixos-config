@@ -38,7 +38,7 @@ in
         syntax on
         filetype plugin indent on
 
-        colorscheme iceberg
+        colorscheme gotham
         set termguicolors
         let mapleader=','
 
@@ -63,7 +63,7 @@ in
         set undofile
         set wrap
 
-        let g:airline_theme='iceberg'
+        let g:airline_theme='gotham'
         let g:AutoPairsMultilineClose=0
 
         command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!{.git,node_modules,build,dist,*/node_modules}/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
