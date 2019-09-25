@@ -16,6 +16,7 @@
       pass-otp
       ripgrep
       wget
+      urlscan
       youtube-dl
     ];
   };

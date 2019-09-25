@@ -61,7 +61,7 @@ in
       sessionVariables = {
         EDITOR = "nvim";
         TERMINAL = "st";
-        BROWSER = "tabbed -r 2 surf -e whatever";
+        BROWSER = "surf";
         READER = "zathura";
         FILE = "lf";
       };
