@@ -19,7 +19,7 @@ in
     home.file.".npmrc".text = ''
       prefix = ~/.local/npm
     '';
-    home.sessionVariables.PATH = "~/.local/npm/bin:$PATH";
+    home.sessionVariables.PATH = "/home/dnixty/.local/npm/bin:$PATH";
     home.packages = with pkgs; [
       nodejs-10_x
     ];

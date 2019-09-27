@@ -36,14 +36,19 @@ in
           ../../assets/patches/surf/surf-custom-2.0.diff
         ];
       };
+      tabbed = pkgs.tabbed.override {
+        patches = [
+          ../../assets/patches/tabbed/tabbed-custom.diff
+        ];
+      };
     };
     home.packages = with pkgs; [
       (slstatus.override { conf = builtins.readFile ../../assets/patches/slstatus/config.def.h; })
+      tabbed
       dmenu
       dwm
       st
       surf
-      tabbed
     ];
   };
 }

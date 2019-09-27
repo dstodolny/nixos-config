@@ -17,6 +17,9 @@ in
   config = mkIf cfg.enable {
     profiles.dev.enable = true;
     home.packages = with pkgs; [
+      haskellPackages.happy
+      haskellPackages.hasktags
+      haskellPackages.stylish-haskell
       ghc
       stack
       hlint

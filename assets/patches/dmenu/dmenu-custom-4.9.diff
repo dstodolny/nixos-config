@@ -12,7 +12,7 @@ index 1edb647..51612b9 100644
  	"monospace:size=10"
 diff --git a/config.h b/config.h
 new file mode 100644
-index 0000000..4ebe6bc
+index 0000000..58800c2
 --- /dev/null
 +++ b/config.h
 @@ -0,0 +1,24 @@
@@ -28,8 +28,8 @@ index 0000000..4ebe6bc
 +static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 +static const char *colors[SchemeLast][2] = {
 +	/*     fg         bg       */
-+	[SchemeNorm] = { "#9b9081", "#181b20" },
-+	[SchemeSel] = { "#3b7c98", "#181b20" },
++	[SchemeNorm] = { "#599cab", "#11151c" },
++	[SchemeSel] = { "#99d1ce", "#11151c" },
 +	[SchemeOut] = { "#000000", "#00ffff" },
 +};
 +/* -l option; if nonzero, dmenu uses vertical list with given number of lines */

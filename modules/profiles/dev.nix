@@ -18,9 +18,7 @@ in
     {
       profiles.git.enable = true;
       home.packages = with pkgs; [
-        binutils
-        cmake
-        gnumake
+        silver-searcher
       ];
     }
   ]);
