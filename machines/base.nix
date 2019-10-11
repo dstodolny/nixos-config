@@ -18,6 +18,7 @@
       wget
       urlscan
       youtube-dl
+      w3m
     ];
   };
 }

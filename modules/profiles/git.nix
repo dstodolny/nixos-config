@@ -21,7 +21,7 @@ in
       userEmail = "dominik@stodolny.org";
       signing = {
         key = "0D5591D3B4BB7818";
-        signByDefault = false;
+        signByDefault = true;
       };
       aliases = {
         b = "branch --color -v";
@@ -88,8 +88,7 @@ in
         };
       };
       ignores = [
-        "*.o" "*.a" "*.la" "*.so"
-        "*~" "#*#" ".makefile" ".clean"
+        "TAGS"
       ];
     };
   };

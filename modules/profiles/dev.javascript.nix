@@ -18,6 +18,7 @@ in
     profiles.dev.enable = true;
     home.file.".npmrc".text = ''
       prefix = ~/.local/npm
+      //registry.npmjs.org/:_authToken=
     '';
     home.sessionVariables.PATH = "/home/dnixty/.local/npm/bin:$PATH";
     home.packages = with pkgs; [

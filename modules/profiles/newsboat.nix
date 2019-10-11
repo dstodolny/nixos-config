@@ -22,6 +22,7 @@ in
       urls = secrets.newsboat.urls;
       extraConfig = ''
         external-url-viewer "urlscan -dc -r 'linkhandler {}'"
+        save-path "~/review"
         bind-key j down
         bind-key k up
         bind-key j next articlelist
@@ -41,9 +42,9 @@ in
         bind-key U show-urls
         bind-key x pb-delete
 
-        color listnormal white default
+        color listnormal blue default
         color listfocus black yellow standout bold
-        color listnormal_unread blue default
+        color listnormal_unread white default
         color listfocus_unread yellow default bold
         color info white black bold
         color article cyan default

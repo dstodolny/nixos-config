@@ -24,6 +24,7 @@ in
         "super + d" = "dmenu_run";
         "super + e" = "emacsclient -c";
         "super + s" = "st -e htop";
+        "super + a" = "st -e irssi";
         "super + c" = "st -e nvim ~/personal/gtd/inbox.md";
         "super + shift + e" = "systemctl --user restart emacs";
         "super + shift + w" = "tabbed -r 2 surf -e whatever";

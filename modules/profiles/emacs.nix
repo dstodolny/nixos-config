@@ -22,6 +22,7 @@ in
         epkgs.magit
         epkgs.expand-region
         epkgs.flycheck
+        epkgs.graphql-mode
         epkgs.neotree
         epkgs.rainbow-mode
         epkgs.projectile
@@ -37,7 +38,6 @@ in
         epkgs.add-node-modules-path
         epkgs.flx
         epkgs.hindent
-        epkgs.intero
         # epkgs.gotham-theme
       ];
     };

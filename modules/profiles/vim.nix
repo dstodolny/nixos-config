@@ -24,15 +24,15 @@ in
       vimAlias = true;
       plugins = with pkgs.vimPlugins; [
         auto-pairs
-        vim-airline
-        vim-commentary
-        vim-surround
-        vim-repeat
-        vim-polyglot
-        vim-ledger
-        vim-nix
         fzf-vim
         fzfWrapper
+        vim-airline
+        vim-commentary
+        vim-ledger
+        vim-nix
+        vim-polyglot
+        vim-repeat
+        vim-surround
       ];
       extraConfig = ''
         syntax on
@@ -65,6 +65,7 @@ in
 
         let g:airline_theme='gotham'
         let g:AutoPairsMultilineClose=0
+        let g:polyglot_disabled=['org']
 
         command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!{.git,node_modules,build,dist,*/node_modules}/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 

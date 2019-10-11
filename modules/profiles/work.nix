@@ -3,6 +3,7 @@
 with lib;
 let
   cfg = config.profiles.work;
+  unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
 in
 {
   options = {
@@ -15,12 +16,18 @@ in
     };
   };
   config = mkIf cfg.enable {
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+        unstable = import unstableTarball {
+          config = config.nixpkgs.config;
+        };
+      };
+    };
     home.packages = with pkgs; [
       chromium
       slack
-      zoom-us
-      vscode
+      unstable.postman
     ];
   };
 }

@@ -9,6 +9,7 @@
     ./profiles/finance.nix
     ./profiles/git.nix
     ./profiles/gpg.nix
+    ./profiles/irssi.nix
     ./profiles/laptop.nix
     ./profiles/latex.nix
     ./profiles/newsboat.nix
