@@ -23,7 +23,7 @@ in
     '';
     home.sessionVariables.PATH = "/home/dnixty/.local/npm/bin:$PATH";
     home.packages = with pkgs; [
-      nodejs
+      pkgs-19-03.nodejs-10_x
     ];
   };
 }

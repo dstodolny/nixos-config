@@ -41,9 +41,11 @@ in
       firefox.enable = true;
     };
     home.packages = with pkgs; [
+      feh
       gimp
       mpv
       sxiv
+      scrot
       xclip
     ];
   };

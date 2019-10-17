@@ -1,5 +1,6 @@
 {
   imports = [
+    ./profiles/bitcoin.nix
     ./profiles/desktop.nix
     ./profiles/dev.haskell.nix
     ./profiles/dev.javascript.nix

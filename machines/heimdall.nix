@@ -6,6 +6,7 @@
   ];
 
   profiles = {
+    bitcoin.enable = true;
     dev = {
       haskell.enable = true;
       javascript.enable = true;
@@ -16,7 +17,7 @@
     irssi.enable = true;
     laptop.enable = true;
     latex.enable = true;
-    newsboat.enable = false;
+    newsboat.enable = true;
     sxhkd.enable = true;
     work.enable = true;
     zathura.enable = true;
