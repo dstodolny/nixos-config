@@ -16,8 +16,7 @@ in
   };
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      # unstable.wasabiwallet
-      unstable.electrum
+      unstable.wasabiwallet
     ];
   };
 }
