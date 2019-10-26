@@ -19,7 +19,7 @@ in
       enable = true;
       options = {
         statusbar-h-padding = 0;
-        status-bar-v-padding = 0;
+        statusbar-v-padding = 0;
         page-padding = 1;
       };
       extraConfig = ''
