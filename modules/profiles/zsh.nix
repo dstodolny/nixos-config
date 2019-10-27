@@ -25,7 +25,7 @@ in
       defaultKeymap = "emacs";
       history = {
         ignoreDups = true;
-        path = "personal/history/zsh";
+        path = ".zsh_history";
       };
       initExtra = ''
         autoload -Uz vcs_info
