@@ -3,6 +3,7 @@
 with lib;
 let
   cfg = config.profiles.suckless;
+  secrets = import ../../secrets.nix;
 in
 {
   options = {
@@ -43,7 +44,7 @@ in
       };
     };
     home.packages = with pkgs; [
-      (slstatus.override { conf = builtins.readFile ../../assets/patches/slstatus/config.def.h; })
+      (slstatus.override { conf = builtins.readFile (../../assets/patches/slstatus + "/${secrets.hostname}/config.def.h"); })
       tabbed
       dmenu
       dwm
