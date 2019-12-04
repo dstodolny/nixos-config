@@ -20,7 +20,7 @@ in
       keybindings = {
         "super + Return" = "st";
         "super + n" = "st -e newsboat";
-        "super + p" = "dmenu_pass";
+        "super + p" = "passmenu";
         "super + d" = "dmenu_run";
         "super + e" = "emacsclient -c";
         "super + s" = "st -e htop";
@@ -29,6 +29,7 @@ in
         "super + shift + e" = "systemctl --user restart emacs";
         "super + shift + w" = "tabbed -r 2 surf -e whatever";
         "super + shift + x" = "slock & xset dpms force off";
+        "Print" = "scrot -fs -e";
       };
     };
   };

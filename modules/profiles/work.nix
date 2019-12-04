@@ -15,14 +15,6 @@ in
     };
   };
   config = mkIf cfg.enable {
-    # nixpkgs.config = {
-    #   allowUnfree = true;
-    #   packageOverrides = pkgs: {
-    #     unstable = import unstableTarball {
-    #       config = config.nixpkgs.config;
-    #     };
-    #   };
-    # };
     home.packages = with pkgs; [
       chromium
       slack

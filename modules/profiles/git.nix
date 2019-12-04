@@ -72,7 +72,7 @@ in
           rebase = true;
         };
         push = {
-          default = "upstream";
+          default = "current";
           recurseSubmodules = "check";
         };
         rebase = {

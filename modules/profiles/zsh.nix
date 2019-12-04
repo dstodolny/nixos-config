@@ -79,6 +79,7 @@ in
         LESS_TERMCAP_ZW="$(tput rsupm)";
       };
       shellAliases = {
+        doas = "sudo";
         e = "emacsclient";
         SS = "sudo systemctl";
         f = "$FILE";

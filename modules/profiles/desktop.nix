@@ -22,7 +22,6 @@ in
 
     xsession.enable = true;
     xsession.windowManager.command = "exec ${pkgs.dwm}/bin/dwm";
-    # xsession.initExtra = "exec emacsclient -c";
     xsession.profileExtra = "slstatus &";
     services = {
       network-manager-applet.enable = true;
@@ -41,8 +40,6 @@ in
       firefox.enable = true;
     };
     home.packages = with pkgs; [
-      feh
-      gimp
       mpv
       sxiv
       scrot

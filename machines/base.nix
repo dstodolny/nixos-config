@@ -18,7 +18,6 @@ in
       };
       pkgs-19-03 = pkgs-19-03Zip;
     };
-      # import ../pkgs/default.nix { inherit pkgs; };
   };
   home = {
     file = {
@@ -26,10 +25,10 @@ in
     };
     packages = with pkgs; [
       fzf
+      tmux
       htop
       killall
       lf
-      nmap
       openssl
       pandoc
       pass-otp
