@@ -1,0 +1,7 @@
+#!/bin/sh
+
+. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
+if [ "$(tty)" = "/dev/tty1" ]; then
+  startx && exit
+fi

@@ -15,29 +15,30 @@ in
     };
   };
   config = mkIf cfg.enable {
-    services.emacs.enable = true;
+    # services.emacs.enable = true;
     programs.emacs = {
       enable = true;
-      extraPackages = epkgs: [
-        epkgs.magit
-        epkgs.expand-region
-        epkgs.flycheck
-        epkgs.graphql-mode
-        epkgs.neotree
-        epkgs.rainbow-mode
-        epkgs.projectile
-        epkgs.ivy
-        epkgs.swiper
-        epkgs.counsel
-        epkgs.tide
-        epkgs.company
-        epkgs.web-mode
-        epkgs.haskell-mode
-        epkgs.prettier-js
-        epkgs.nix-mode
-        epkgs.add-node-modules-path
-        epkgs.flx
-        epkgs.hindent
+      extraPackages = epkgs: with epkgs; [
+         exwm
+#        epkgs.magit
+#        epkgs.expand-region
+#        epkgs.flycheck
+#        epkgs.graphql-mode
+#        epkgs.neotree
+#        epkgs.rainbow-mode
+#        epkgs.projectile
+#        epkgs.ivy
+#        epkgs.swiper
+#        epkgs.counsel
+#        epkgs.tide
+#        epkgs.company
+#        epkgs.web-mode
+#        epkgs.haskell-mode
+#        epkgs.prettier-js
+#        epkgs.nix-mode
+#        epkgs.add-node-modules-path
+#        epkgs.flx
+#        epkgs.hindent
         # epkgs.gotham-theme
       ];
     };

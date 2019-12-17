@@ -22,6 +22,7 @@ in
   home = {
     file = {
       "bin".source = ../assets/bin;
+      ".profile".source = ../assets/profile;
     };
     packages = with pkgs; [
       fzf

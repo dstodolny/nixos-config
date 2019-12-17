@@ -1,0 +1,2 @@
+emacs --daemon --eval "(require 'exwm)" -f exwm-enable
+exec emacsclient -c

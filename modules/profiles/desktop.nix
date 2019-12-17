@@ -12,6 +12,11 @@ in
         description = "Enable desktop profile";
         type = types.bool;
       };
+      redshift = mkOption {
+        default = true;
+        description = "Enable redshift with desktop profile";
+        type = types.bool;
+      };
     };
   };
   config = mkIf cfg.enable {
@@ -20,13 +25,17 @@ in
       suckless.enable = true;
     };
 
-    xsession.enable = true;
-    xsession.windowManager.command = "exec ${pkgs.dwm}/bin/dwm";
-    xsession.profileExtra = "slstatus &";
+    home.file = {
+      ".xsession" = {
+        source = ../../assets/xsession;
+        executable = true;
+      };
+    };
+
     services = {
       network-manager-applet.enable = true;
       redshift = {
-        enable = true;
+        enable = cfg.redshift;
         latitude = "51.5094";
         longitude = "0.1365";
         brightness = {
