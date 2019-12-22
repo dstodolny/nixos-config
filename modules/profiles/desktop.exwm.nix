@@ -14,7 +14,7 @@ in
     profiles = {
       desktop.enable = true;
       emacs.enable = true;
-      # gpg.pinentry = "${pkgs.pinentry_emacs}/bin/pinentry-emacs";
+      gpg.pinentry = "${pkgs.pinentry_emacs}/bin/pinentry-emacs";
     };
     home.file = {
       ".xsession" = {
@@ -24,6 +24,7 @@ in
       ".conkyrc".source = ../../assets/conkyrc;
     };
     home.packages = with pkgs; [
+      pinentry_emacs
       conky
       dzen2
     ];

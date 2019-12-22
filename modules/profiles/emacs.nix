@@ -24,6 +24,7 @@ in
       programs.emacs = {
         extraPackages = epkgs: with epkgs; [
           exwm
+          pinentry
         ];
       };
     })
@@ -54,8 +55,8 @@ in
     })
     (mkIf config.services.gpg-agent.enable {
       services.gpg-agent.extraConfig = ''
-        #allow-emacs-pinentry
-        #allow-loopback-pinentry
+        allow-emacs-pinentry
+        allow-loopback-pinentry
       '';
     })
   ]);
