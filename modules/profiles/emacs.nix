@@ -7,40 +7,56 @@ in
 {
   options = {
     profiles.emacs = {
-      enable = mkOption {
-        default = false;
-        description = "Enable emacs profile";
-        type = types.bool;
+      enable = mkEnableOption "Enable emacs profile";
+    };
+  };
+  config = mkIf cfg.enable (mkMerge [
+    {
+      services.emacs.enable = !config.profiles.desktop.exwm.enable;
+      programs.emacs = {
+        enable = true;
+        extraPackages = epkgs: with epkgs; [
+           gruvbox-theme
+        ];
       };
-    };
-  };
-  config = mkIf cfg.enable {
-    # services.emacs.enable = true;
-    programs.emacs = {
-      enable = true;
-      extraPackages = epkgs: with epkgs; [
-         exwm
-#        epkgs.magit
-#        epkgs.expand-region
-#        epkgs.flycheck
-#        epkgs.graphql-mode
-#        epkgs.neotree
-#        epkgs.rainbow-mode
-#        epkgs.projectile
-#        epkgs.ivy
-#        epkgs.swiper
-#        epkgs.counsel
-#        epkgs.tide
-#        epkgs.company
-#        epkgs.web-mode
-#        epkgs.haskell-mode
-#        epkgs.prettier-js
-#        epkgs.nix-mode
-#        epkgs.add-node-modules-path
-#        epkgs.flx
-#        epkgs.hindent
-        # epkgs.gotham-theme
-      ];
-    };
-  };
+    }
+    (mkIf config.profiles.desktop.exwm.enable {
+      programs.emacs = {
+        extraPackages = epkgs: with epkgs; [
+          exwm
+        ];
+      };
+    })
+    (mkIf config.profiles.desktop.dwm.enable {
+      programs.emacs = {
+        extraPackages = epkgs: with epkgs; [
+          magit
+          expand-region
+          flycheck
+          graphql-mode
+          neotree
+          rainbow-mode
+          projectile
+          ivy
+          swiper
+          counsel
+          tide
+          company
+          web-mode
+          haskell-mode
+          prettier-js
+          nix-mode
+          add-node-modules-path
+          flx
+          hindent
+        ];
+      };
+    })
+    (mkIf config.services.gpg-agent.enable {
+      services.gpg-agent.extraConfig = ''
+        #allow-emacs-pinentry
+        #allow-loopback-pinentry
+      '';
+    })
+  ]);
 }

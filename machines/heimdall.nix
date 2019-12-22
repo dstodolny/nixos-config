@@ -12,15 +12,11 @@
       javascript.enable = true;
       python.enable = true;
     };
+    desktop.dwm.enable = true;
     emacs.enable = true;
     finance.enable = true;
-    irssi.enable = true;
-    laptop.enable = true;
     latex.enable = true;
-    newsboat.enable = true;
-    sxhkd.enable = true;
     work.enable = true;
-    zathura.enable = true;
     zsh.enable = true;
   };
 }

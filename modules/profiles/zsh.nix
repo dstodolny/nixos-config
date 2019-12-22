@@ -7,11 +7,7 @@ in
 {
   options = {
     profiles.zsh = {
-      enable = mkOption {
-        default = false;
-        description = "Enable zsh profile";
-        type = types.bool;
-      };
+      enable = mkEnableOption "Enable zsh profile";
     };
   };
   config = mkIf cfg.enable {
@@ -79,7 +75,6 @@ in
         LESS_TERMCAP_ZW="$(tput rsupm)";
       };
       shellAliases = {
-        doas = "sudo";
         e = "emacsclient";
         SS = "sudo systemctl";
         f = "$FILE";

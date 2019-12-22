@@ -1,5 +1,5 @@
 {
-  newsboat = {
-    urs = [];
-  };
+  hostname = "";
+  npmjs.tokens.name = "";
+  bitlbee.password = "";
 }

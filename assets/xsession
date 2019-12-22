@@ -1,2 +1,3 @@
+conky | dzen2 -p -dock -ta l -fn "DejaVu Sans Mono:size=10" &
 emacs --daemon --eval "(require 'exwm)" -f exwm-enable
 exec emacsclient -c

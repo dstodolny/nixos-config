@@ -1,6 +1,8 @@
 {
   imports = [
     ./profiles/bitcoin.nix
+    ./profiles/desktop.dwm.nix
+    ./profiles/desktop.exwm.nix
     ./profiles/desktop.nix
     ./profiles/dev.haskell.nix
     ./profiles/dev.javascript.nix
@@ -10,15 +12,10 @@
     ./profiles/finance.nix
     ./profiles/git.nix
     ./profiles/gpg.nix
-    ./profiles/irssi.nix
-    ./profiles/laptop.nix
     ./profiles/latex.nix
-    ./profiles/newsboat.nix
-    ./profiles/suckless.nix
-    ./profiles/sxhkd.nix
+    ./profiles/pass.nix
     ./profiles/vim.nix
     ./profiles/work.nix
-    ./profiles/zathura.nix
     ./profiles/zsh.nix
   ];
 }

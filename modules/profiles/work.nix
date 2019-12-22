@@ -7,11 +7,7 @@ in
 {
   options = {
     profiles.work = {
-      enable = mkOption {
-        default = false;
-        description = "Enable work profile and configuration";
-        type = types.bool;
-      };
+      enable = mkEnableOption "Enable work profile";
     };
   };
   config = mkIf cfg.enable {

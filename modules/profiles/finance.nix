@@ -7,11 +7,7 @@ in
 {
   options = {
     profiles.finance = {
-      enable = mkOption {
-        default = false;
-        description = "Enable finance profile";
-        type = types.bool;
-      };
+      enable = mkEnableOption "Enable finance profile";
     };
   };
   config = mkIf cfg.enable {

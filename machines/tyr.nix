@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -6,9 +6,8 @@
   ];
 
   profiles = {
-    emacs.enable = true;
-    laptop.enable = true;
-    desktop.redshift = false;
-    sxhkd.enable = false;
+    desktop.exwm.enable = true;
+    pass.enable = true;
+    vim.enable = true;
   };
 }

@@ -7,33 +7,12 @@ in
 {
   options = {
     profiles.desktop = {
-      enable = mkOption {
-        default = false;
-        description = "Enable desktop profile";
-        type = types.bool;
-      };
-      redshift = mkOption {
-        default = true;
-        description = "Enable redshift with desktop profile";
-        type = types.bool;
-      };
+      enable = mkEnableOption "Enable desktop profile";
+      redshift = mkEnableOption "Enable redshift";
     };
   };
   config = mkIf cfg.enable {
-    profiles = {
-      gpg.enable = true;
-      suckless.enable = true;
-    };
-
-    home.file = {
-      ".xsession" = {
-        source = ../../assets/xsession;
-        executable = true;
-      };
-    };
-
     services = {
-      network-manager-applet.enable = true;
       redshift = {
         enable = cfg.redshift;
         latitude = "51.5094";
@@ -45,14 +24,10 @@ in
         temperature.night = 3000;
       };
     };
-    programs = {
-      firefox.enable = true;
-    };
     home.packages = with pkgs; [
+      firefox
       mpv
-      sxiv
       scrot
-      xclip
     ];
   };
 }

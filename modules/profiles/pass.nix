@@ -2,18 +2,18 @@
 
 with lib;
 let
-  cfg = config.profiles.dev;
+  cfg = config.profiles.pass;
 in
 {
   options = {
-    profiles.dev = {
-      enable = mkEnableOption "Enable development profile";
+    profiles.pass = {
+      enable = mkEnableOption "Enable pass";
     };
   };
   config = mkIf cfg.enable {
+    profiles.gpg.enable = true;
     home.packages = with pkgs; [
-      silver-searcher
-      ripgrep
+      pass-otp
     ];
   };
 }

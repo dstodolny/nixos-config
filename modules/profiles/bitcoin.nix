@@ -7,11 +7,7 @@ in
 {
   options = {
     profiles.bitcoin = {
-      enable = mkOption {
-        default = false;
-        description = "Enable bitcoin profile";
-        type = types.bool;
-      };
+      enable = mkEnableOption "Enable bitcoin profile";
     };
   };
   config = mkIf cfg.enable {

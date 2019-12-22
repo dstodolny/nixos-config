@@ -7,11 +7,7 @@ in
   {
     options = {
       profiles.latex = {
-        enable = mkOption {
-          default = false;
-          description = "Enable latex profile and configuration";
-          type = types.bool;
-        };
+        enable = mkEnableOption "Enable latex profile";
       };
     };
     config = mkIf cfg.enable {

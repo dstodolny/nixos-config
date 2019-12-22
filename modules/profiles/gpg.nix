@@ -12,13 +12,15 @@ in
         description = "Enable gpg profile and configuration";
         type = types.bool;
       };
+      pinentry = mkOption {
+        default = "${pkgs.pinentry}/bin/pinentry";
+        description = "Path to pinentry";
+        type = types.str;
+      };
     };
   };
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [
-        pinentry
-      ];
       sessionVariables = {
         GPG_TTY = "$(tty)";
       };
@@ -56,7 +58,7 @@ in
         defaultCacheTtlSsh = 86400;
         maxCacheTtlSsh = 86400;
         extraConfig = ''
-pinentry-program "${pkgs.pinentry}/bin/pinentry"
+pinentry-program ${cfg.pinentry}
         '';
       };
     };
