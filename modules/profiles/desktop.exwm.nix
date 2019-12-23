@@ -21,12 +21,9 @@ in
         source = ../../assets/xsession;
         executable = true;
       };
-      ".conkyrc".source = ../../assets/conkyrc;
     };
     home.packages = with pkgs; [
       pinentry_emacs
-      conky
-      dzen2
     ];
   };
 }
