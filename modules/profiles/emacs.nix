@@ -16,24 +16,30 @@ in
       programs.emacs = {
         enable = true;
         extraPackages = epkgs: with epkgs; [
-           gruvbox-theme
-        ];
+          company
+          flycheck
+          gruvbox-theme
+          haskell-mode
+          helm
+          helpful
+          magit
+          nix-mode
+          tide
+          pinentry
+         ];
       };
     }
     (mkIf config.profiles.desktop.exwm.enable {
       programs.emacs = {
         extraPackages = epkgs: with epkgs; [
           exwm
-          pinentry
         ];
       };
     })
     (mkIf config.profiles.desktop.dwm.enable {
       programs.emacs = {
         extraPackages = epkgs: with epkgs; [
-          magit
           expand-region
-          flycheck
           graphql-mode
           neotree
           rainbow-mode
@@ -41,12 +47,8 @@ in
           ivy
           swiper
           counsel
-          tide
-          company
           web-mode
-          haskell-mode
           prettier-js
-          nix-mode
           add-node-modules-path
           flx
           hindent
