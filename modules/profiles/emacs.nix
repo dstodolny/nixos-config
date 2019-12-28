@@ -17,15 +17,24 @@ in
         enable = true;
         extraPackages = epkgs: with epkgs; [
           company
+          elfeed
+          expand-region
           flycheck
+          graphql-mode
           gruvbox-theme
           haskell-mode
           helm
+          helm-pass
+          helm-projectile
           helpful
           magit
+          neotree
           nix-mode
-          tide
+          pdf-tools
           pinentry
+          projectile
+          rainbow-delimiters
+          tide
          ];
       };
     }
@@ -39,11 +48,7 @@ in
     (mkIf config.profiles.desktop.dwm.enable {
       programs.emacs = {
         extraPackages = epkgs: with epkgs; [
-          expand-region
-          graphql-mode
-          neotree
           rainbow-mode
-          projectile
           ivy
           swiper
           counsel
