@@ -28,6 +28,7 @@ in
       firefox
       mpv
       scrot
+      xclip
     ];
   };
 }
