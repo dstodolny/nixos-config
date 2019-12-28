@@ -19,7 +19,7 @@ in
     };
     packages = with pkgs; [
       wget
-      unstable.nix-linter
+      poppler
     ];
   };
 }
