@@ -8,6 +8,7 @@
     ./profiles/dev.javascript.nix
     ./profiles/dev.nix
     ./profiles/dev.python.nix
+    ./profiles/dev.scheme.nix
     ./profiles/emacs.nix
     ./profiles/finance.nix
     ./profiles/git.nix
