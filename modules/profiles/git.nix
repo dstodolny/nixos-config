@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 let
@@ -24,13 +24,8 @@ in
         signByDefault = true;
       };
       aliases = {
-        b = "branch --color -v";
-        br = "branch";
         ci = "commit --signoff";
         co = "checkout";
-        ca = "commit --amend";
-        unstage = "reset HEAD";
-        r = "remote -v";
         st = "status";
       };
       extraConfig = {

@@ -33,7 +33,9 @@ in
           pdf-tools
           pinentry
           projectile
+          pulseaudio-control
           rainbow-delimiters
+          restclient
           tide
          ];
       };
@@ -42,21 +44,6 @@ in
       programs.emacs = {
         extraPackages = epkgs: with epkgs; [
           exwm
-        ];
-      };
-    })
-    (mkIf config.profiles.desktop.dwm.enable {
-      programs.emacs = {
-        extraPackages = epkgs: with epkgs; [
-          rainbow-mode
-          ivy
-          swiper
-          counsel
-          web-mode
-          prettier-js
-          add-node-modules-path
-          flx
-          hindent
         ];
       };
     })
