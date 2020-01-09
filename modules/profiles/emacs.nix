@@ -31,12 +31,16 @@ in
           neotree
           nix-mode
           pdf-tools
+          prettier-js
+          add-node-modules-path
           pinentry
           projectile
           pulseaudio-control
           rainbow-delimiters
           restclient
+          terraform-mode
           tide
+          web-mode
          ];
       };
     }
