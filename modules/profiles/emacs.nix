@@ -16,6 +16,7 @@ in
       programs.emacs = {
         enable = true;
         extraPackages = epkgs: with epkgs; [
+          add-node-modules-path
           company
           elfeed
           expand-region
@@ -24,6 +25,7 @@ in
           gruvbox-theme
           haskell-mode
           helm
+          helm-exwm
           helm-pass
           helm-projectile
           helpful
@@ -31,9 +33,8 @@ in
           neotree
           nix-mode
           pdf-tools
-          prettier-js
-          add-node-modules-path
           pinentry
+          prettier-js
           projectile
           pulseaudio-control
           rainbow-delimiters

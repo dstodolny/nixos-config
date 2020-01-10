@@ -13,6 +13,7 @@
     ./profiles/git.nix
     ./profiles/gpg.nix
     ./profiles/latex.nix
+    ./profiles/lisp.nix
     ./profiles/pass.nix
     ./profiles/work.nix
   ];
