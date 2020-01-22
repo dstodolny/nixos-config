@@ -22,7 +22,7 @@ in
           expand-region
           flycheck
           graphql-mode
-          gruvbox-theme
+          color-theme-sanityinc-tomorrow
           haskell-mode
           helm
           helm-exwm
