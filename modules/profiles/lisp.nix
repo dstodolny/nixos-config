@@ -14,6 +14,7 @@ in
     profiles.dev.enable = true;
     home.packages = with pkgs; [
       sbcl
+      clisp
     ];
   };
 }
