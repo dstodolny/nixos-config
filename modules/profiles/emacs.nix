@@ -29,6 +29,7 @@ in
           helm-pass
           helm-projectile
           helpful
+          ledger-mode
           magit
           neotree
           nix-mode
