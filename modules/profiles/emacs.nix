@@ -40,6 +40,8 @@ in
           pulseaudio-control
           rainbow-delimiters
           restclient
+          ledger-mode
+          flycheck-ledger
           terraform-mode
           tide
           web-mode
