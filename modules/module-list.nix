@@ -12,6 +12,7 @@
     ./profiles/finance.nix
     ./profiles/git.nix
     ./profiles/gpg.nix
+    ./profiles/graphics.nix
     ./profiles/latex.nix
     ./profiles/lisp.nix
     ./profiles/pass.nix
