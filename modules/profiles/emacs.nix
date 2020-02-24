@@ -43,6 +43,7 @@ in
           pulseaudio-control
           rainbow-delimiters
           restclient
+          sicp
           terraform-mode
           tide
           web-mode
