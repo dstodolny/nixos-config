@@ -17,14 +17,17 @@ in
         enable = true;
         extraPackages = epkgs: with epkgs; [
           add-node-modules-path
+          color-theme-sanityinc-tomorrow
           company
           elfeed
+          esh-autosuggest
           expand-region
           flycheck
+          flycheck-ledger
           graphql-mode
-          color-theme-sanityinc-tomorrow
           haskell-mode
           helm
+          helm-descbinds
           helm-exwm
           helm-pass
           helm-projectile
@@ -40,8 +43,6 @@ in
           pulseaudio-control
           rainbow-delimiters
           restclient
-          ledger-mode
-          flycheck-ledger
           terraform-mode
           tide
           web-mode
