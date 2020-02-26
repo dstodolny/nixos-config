@@ -13,6 +13,7 @@
     };
     desktop.exwm.enable = true;
     finance.enable = true;
+    im.enable = true;
     pass.enable = true;
   };
 }
