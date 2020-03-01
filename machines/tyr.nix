@@ -11,6 +11,7 @@
       scheme.enable = true;
       lisp.enable = true;
     };
+    gfx.enable = true;
     desktop.exwm.enable = true;
     finance.enable = true;
     im.enable = true;

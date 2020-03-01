@@ -2,12 +2,12 @@
 
 with lib;
 let
-  cfg = config.profiles.graphics;
+  cfg = config.profiles.gfx;
 in
 {
   options = {
-    profiles.graphics = {
-      enable = mkEnableOption "Enable graphicselopment profile";
+    profiles.gfx = {
+      enable = mkEnableOption "Enable gfx profile";
     };
   };
   config = mkIf cfg.enable {
