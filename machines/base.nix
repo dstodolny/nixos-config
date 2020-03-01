@@ -18,6 +18,7 @@ in
       ".profile".source = ../assets/profile;
     };
     packages = with pkgs; [
+      unzip
       ispell
       wget
       poppler
