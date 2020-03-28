@@ -10,6 +10,7 @@
     dev = {
       scheme.enable = true;
       lisp.enable = true;
+      c.enable = true;
     };
     gfx.enable = true;
     desktop.exwm.enable = true;
