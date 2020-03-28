@@ -27,15 +27,18 @@ in
           graphql-mode
           haskell-mode
           helm
+          helm-company
           helm-descbinds
           helm-exwm
           helm-pass
           helm-projectile
+          helm-slime
           helpful
           ledger-mode
           magit
           neotree
           nix-mode
+          paredit
           pdf-tools
           pinentry
           prettier-js
@@ -44,6 +47,7 @@ in
           rainbow-delimiters
           restclient
           sicp
+          slime
           terraform-mode
           tide
           web-mode
