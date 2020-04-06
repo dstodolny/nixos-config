@@ -21,7 +21,7 @@ in
       unzip
       ispell
       wget
-      poppler
+      poppler_utils
     ];
   };
 }
