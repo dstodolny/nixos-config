@@ -25,9 +25,9 @@ in
       };
     };
     home.packages = with pkgs; [
+      flameshot
       firefox
       mpv
-      scrot
       xclip
     ];
   };
