@@ -16,16 +16,11 @@ in
       programs.emacs = {
         enable = true;
         extraPackages = epkgs: with epkgs; [
-          add-node-modules-path
           color-theme-sanityinc-tomorrow
-          company
-          elfeed
+          diminish
           esh-autosuggest
           expand-region
           flycheck
-          flycheck-ledger
-          graphql-mode
-          haskell-mode
           helm
           helm-company
           helm-descbinds
@@ -33,24 +28,16 @@ in
           helm-pass
           helm-projectile
           helm-slime
-          helpful
           ledger-mode
           magit
-          neotree
           nix-mode
           paredit
           pdf-tools
           pinentry
-          prettier-js
           projectile
           pulseaudio-control
-          rainbow-delimiters
-          restclient
-          sicp
           slime
-          terraform-mode
-          tide
-          web-mode
+          use-package
          ];
       };
     }
