@@ -17,9 +17,8 @@ in
       gpg.pinentry = "${pkgs.pinentry_emacs}/bin/pinentry-emacs";
     };
     home.file = {
-      ".xsession" = {
-        source = ../../assets/xsession;
-        executable = true;
+      ".xinitrc" = {
+        source = ../../assets/xinitrc;
       };
     };
     home.packages = with pkgs; [
