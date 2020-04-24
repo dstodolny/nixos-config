@@ -23,9 +23,9 @@ in
         };
         temperature.night = 3000;
       };
+      flameshot.enable = true;
     };
     home.packages = with pkgs; [
-      flameshot
       firefox
       mpv
       xclip
