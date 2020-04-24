@@ -14,6 +14,9 @@ in
     profiles.dev.enable = true;
     home.packages = with pkgs; [
       gcc
+      gdb
+      gnumake
+      valgrind
     ];
   };
 }
