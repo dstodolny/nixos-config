@@ -4,7 +4,6 @@
     ./profiles/desktop.exwm.nix
     ./profiles/desktop.nix
     ./profiles/dev.c.nix
-    ./profiles/dev.haskell.nix
     ./profiles/dev.javascript.nix
     ./profiles/dev.nix
     ./profiles/dev.python.nix
