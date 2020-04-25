@@ -16,7 +16,6 @@ in
       programs.emacs = {
         enable = true;
         extraPackages = epkgs: with epkgs; [
-          color-theme-sanityinc-tomorrow
           diminish
           esh-autosuggest
           expand-region
@@ -30,6 +29,8 @@ in
           helm-slime
           ledger-mode
           magit
+          modus-operandi-theme
+          modus-vivendi-theme
           nix-mode
           paredit
           pdf-tools
