@@ -18,6 +18,8 @@ in
       ".profile".source = ../assets/profile;
     };
     packages = with pkgs; [
+      aspell
+      aspellDicts.en
       unzip
       ispell
       wget
