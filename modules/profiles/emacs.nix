@@ -41,10 +41,12 @@ in
           password-store-otp
           pdf-tools
           pinentry
+          prettier-js
           projectile
           pulseaudio-control
           rg
           slime
+          tide
           use-package
           wgrep
          ];
