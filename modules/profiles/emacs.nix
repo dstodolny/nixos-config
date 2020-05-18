@@ -12,33 +12,41 @@ in
   };
   config = mkIf cfg.enable (mkMerge [
     {
+      nixpkgs.overlays = [
+        (import (builtins.fetchTarball {
+          url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+        }))
+      ];
       services.emacs.enable = !config.profiles.desktop.exwm.enable;
       programs.emacs = {
         enable = true;
+        package = pkgs.emacsGit;
         extraPackages = epkgs: with epkgs; [
           diminish
+          dired-subtree
           esh-autosuggest
           expand-region
           flycheck
-          helm
-          helm-company
-          helm-descbinds
-          helm-exwm
-          helm-pass
-          helm-projectile
-          helm-slime
+          ibuffer-vc
+          icomplete-vertical
           ledger-mode
           magit
           modus-operandi-theme
           modus-vivendi-theme
           nix-mode
+          orderless
           paredit
+          pass
+          password-store
+          password-store-otp
           pdf-tools
           pinentry
           projectile
           pulseaudio-control
+          rg
           slime
           use-package
+          wgrep
          ];
       };
     }
