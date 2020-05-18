@@ -26,6 +26,7 @@ in
       flameshot.enable = true;
     };
     home.packages = with pkgs; [
+      anki
       firefox
       mpv
       xclip
