@@ -12,10 +12,15 @@ in
   };
   config = mkIf cfg.enable {
     profiles.dev.enable = true;
-    home.packages = with pkgs; [
-      sbcl
-      clisp
-      lispPackages.quicklisp
-    ];
+    home = {
+      file = {
+        ".sbclrc".source = ../../assets/sbclrc;
+      };
+      packages = with pkgs; [
+        sbcl
+        clisp
+        lispPackages.quicklisp
+      ];
+    };
   };
 }
