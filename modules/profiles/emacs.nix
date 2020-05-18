@@ -22,8 +22,11 @@ in
         enable = true;
         package = pkgs.emacsGit;
         extraPackages = epkgs: with epkgs; [
+          async
+          diff-hl
           diminish
           dired-subtree
+          diredfl
           esh-autosuggest
           expand-region
           flycheck
@@ -40,6 +43,7 @@ in
           password-store
           password-store-otp
           pdf-tools
+          peep-dired
           pinentry
           prettier-js
           projectile
@@ -47,6 +51,7 @@ in
           rg
           slime
           tide
+          trashed
           use-package
           wgrep
          ];
