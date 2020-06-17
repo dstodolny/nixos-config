@@ -10,9 +10,9 @@
     ./profiles/dev.scheme.nix
     ./profiles/emacs.nix
     ./profiles/finance.nix
+    ./profiles/gfx.nix
     ./profiles/git.nix
     ./profiles/gpg.nix
-    ./profiles/gfx.nix
     ./profiles/im.nix
     ./profiles/latex.nix
     ./profiles/lisp.nix

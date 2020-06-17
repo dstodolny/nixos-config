@@ -49,7 +49,7 @@ in
           projectile
           pulseaudio-control
           rg
-          slime
+          sly
           tide
           trashed
           use-package
