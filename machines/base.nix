@@ -18,6 +18,8 @@ in
       ".profile".source = ../assets/profile;
     };
     packages = with pkgs; [
+      transmission
+      patchelf
       aspell
       aspellDicts.en
       unzip

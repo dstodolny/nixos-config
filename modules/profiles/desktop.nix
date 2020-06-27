@@ -28,6 +28,7 @@ in
     home.packages = with pkgs; [
       anki
       firefox
+      tor-browser-bundle-bin
       mpv
       xclip
     ];
