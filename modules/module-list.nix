@@ -17,6 +17,7 @@
     ./profiles/latex.nix
     ./profiles/lisp.nix
     ./profiles/pass.nix
+    ./profiles/wechall.nix
     ./profiles/work.nix
   ];
 }

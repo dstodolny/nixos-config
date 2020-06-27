@@ -19,5 +19,6 @@
     im.enable = true;
     pass.enable = true;
     work.enable = true;
+    wechall.enable = true;
   };
 }
