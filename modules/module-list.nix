@@ -5,6 +5,7 @@
     ./profiles/desktop.nix
     ./profiles/dev.c.nix
     ./profiles/dev.javascript.nix
+    ./profiles/dev.lisp.nix
     ./profiles/dev.nix
     ./profiles/dev.python.nix
     ./profiles/dev.scheme.nix
@@ -15,7 +16,6 @@
     ./profiles/gpg.nix
     ./profiles/im.nix
     ./profiles/latex.nix
-    ./profiles/lisp.nix
     ./profiles/pass.nix
     ./profiles/wechall.nix
     ./profiles/work.nix
