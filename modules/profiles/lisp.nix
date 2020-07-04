@@ -20,6 +20,7 @@ in
         sbcl
         clisp
         lispPackages.quicklisp
+        lispPackages.cl_plus_ssl
       ];
     };
   };
