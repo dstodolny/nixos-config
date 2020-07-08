@@ -13,12 +13,12 @@
       c.enable = true;
       javascript.enable = true;
     };
-    gfx.enable = true;
-    desktop.exwm.enable = true;
+    desktop.xfce.enable = true;
+    emacs.enable = true;
     finance.enable = true;
+    gfx.enable = true;
     im.enable = true;
     pass.enable = true;
-    work.enable = true;
     wechall.enable = true;
   };
 }

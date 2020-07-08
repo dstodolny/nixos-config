@@ -13,7 +13,7 @@ in
         type = types.bool;
       };
       pinentry = mkOption {
-        default = "${pkgs.pinentry}/bin/pinentry";
+        default = "${pkgs.pinentry-gtk2}/bin/pinentry";
         description = "Path to pinentry";
         type = types.str;
       };
@@ -24,6 +24,7 @@ in
       sessionVariables = {
         GPG_TTY = "$(tty)";
       };
+      packages = with pkgs; [ pinentry-gtk2 ];
     };
     programs.gpg = {
       enable = true;
@@ -58,7 +59,7 @@ in
         defaultCacheTtlSsh = 86400;
         maxCacheTtlSsh = 86400;
         extraConfig = ''
-pinentry-program ${cfg.pinentry}
+          pinentry-program ${cfg.pinentry}
         '';
       };
     };

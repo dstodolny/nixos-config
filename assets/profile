@@ -2,8 +2,4 @@
 
 . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
-EDITOR="emacsclient"
-
-export EDITOR
-
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; exec exit; fi

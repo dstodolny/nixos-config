@@ -17,11 +17,12 @@ in
           url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
         }))
       ];
-      services.emacs.enable = !config.profiles.desktop.exwm.enable;
+      services.emacs.enable = true;
       programs.emacs = {
         enable = true;
         package = pkgs.emacsGit;
         extraPackages = epkgs: with epkgs; [
+          ace-window
           async
           diff-hl
           diminish
@@ -30,6 +31,7 @@ in
           esh-autosuggest
           expand-region
           flycheck
+          goto-last-change
           ibuffer-vc
           icomplete-vertical
           ledger-mode
@@ -44,31 +46,17 @@ in
           password-store-otp
           pdf-tools
           peep-dired
-          pinentry
           prettier-js
           projectile
           pulseaudio-control
-          rg
+          restclient
+          scratch
           sly
           tide
           trashed
           use-package
-          wgrep
-         ];
-      };
-    }
-    (mkIf config.profiles.desktop.exwm.enable {
-      programs.emacs = {
-        extraPackages = epkgs: with epkgs; [
-          exwm
         ];
       };
-    })
-    (mkIf config.services.gpg-agent.enable {
-      services.gpg-agent.extraConfig = ''
-        allow-emacs-pinentry
-        allow-loopback-pinentry
-      '';
-    })
+    }
   ]);
 }

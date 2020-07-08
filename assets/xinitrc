@@ -1,5 +1,3 @@
 xss-lock slock &
-xset r rate 250 30
-
-emacs --daemon --eval "(require 'exwm)" -f exwm-enable
-exec emacsclient -c
+gpg-connect-agent updatestartuptty /bye
+exec startxfce4

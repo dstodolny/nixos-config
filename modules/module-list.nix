@@ -1,8 +1,8 @@
 {
   imports = [
     ./profiles/bitcoin.nix
-    ./profiles/desktop.exwm.nix
     ./profiles/desktop.nix
+    ./profiles/desktop.xfce.nix
     ./profiles/dev.c.nix
     ./profiles/dev.javascript.nix
     ./profiles/dev.lisp.nix

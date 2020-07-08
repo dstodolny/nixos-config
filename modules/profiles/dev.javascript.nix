@@ -16,7 +16,6 @@ in
     home = {
       file.".npmrc".text = ''
         prefix = ~/.local/npm
-        //registry.npmjs.org/:_authToken=${secrets.npmjs.tokens.atg}
       '';
       sessionVariables.PATH = "/home/dnixty/.local/npm/bin:$PATH";
       packages = with pkgs; [
