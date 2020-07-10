@@ -12,7 +12,7 @@
       async
       diff-hl
       diminish
-      dired-subtree
+      dired-single
       diredfl
       esh-autosuggest
       expand-region
@@ -25,20 +25,19 @@
       modus-operandi-theme
       modus-vivendi-theme
       nix-mode
-      orderless
       paredit
       pass
       password-store
       password-store-otp
       pdf-tools
-      peep-dired
       prettier-js
-      projectile
+      rg
       scratch
       sly
       tide
       trashed
       use-package
+      wgrep
     ];
   };
 }
