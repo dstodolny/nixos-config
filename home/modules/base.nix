@@ -12,6 +12,7 @@
       ledger
       niv
       pinentry
+      ripgrep
     ];
     file = {
       ".profile".text = ''
