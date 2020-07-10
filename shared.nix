@@ -1,9 +1,4 @@
 {
-  user = {
-    username = "dnixty";
-    name = "Dominik Stodolny";
-    email = "dominik@stodolny.org";
-  };
   ports = {
     wireguard = 53898;
     sshd = 65130;

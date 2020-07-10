@@ -1,5 +1,6 @@
 let
   home-manager = (import ./nix/sources.nix).home-manager;
+  hostname = "${builtins.readFile ./hostname}";
 in
 {
   programs = {
@@ -8,10 +9,6 @@ in
       path = "${home-manager}";
     };
   };
-  nixpkgs.overlays = [
-    (import ./nix).emacs
-  ];
-  imports = [
-    ./home
-  ];
+  nixpkgs.overlays = [ (import ./nix).emacs ];
+  imports = [ (./home + "/${hostname}.home.nix") ];
 }

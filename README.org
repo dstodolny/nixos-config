@@ -1,1 +1,33 @@
-* My infrastructure configuration
+* My NixOS and home configuration
+
+** Installation
+Clone this repository
+#+BEGIN_SRC sh
+git clone https://github.com/dnixty/nixos-config.git ~/src/nixos-config
+#+END_SRC
+
+** System configuration
+Copy original ~hardware-configuration.nix~
+#+BEGIN_SRC sh
+sudo cp /etc/nixos/hardware-configuration.nix ~/nixos-config
+sudo chown dnixty:users ~/nixos-config/hardware-configuration.nix
+#+END_SRC
+
+Link ~nixos-config~
+#+BEGIN_SRC sh
+sudo ln -s /home/dnixty/nixos-config /etc/nixos
+#+END_SRC
+
+Create ~hostname~ file
+#+BEGIN_SRC sh
+echo "tyr" > ~/src/nixos-config/hostname
+#+END_SRC
+
+Rebuild NixOS
+#+BEGIN_SRC sh
+sudo nixos-rebuild switch
+#+END_SRC
+
+** Home configuration
+
+TODO

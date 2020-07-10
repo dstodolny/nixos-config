@@ -1,6 +1,28 @@
-{ config, lib, ... }:
+{ pkgs, ... }:
 
 {
+  home = {
+    file = {
+      ".npmrc".text = ''
+        prefix = ~/.local/npm
+      '';
+      ".sbclrc".source = ../assets/sbclrc;
+    };
+    packages = with pkgs; [
+      binutils
+      gcc
+      gdb
+      gnumake
+      valgrind
+      nodejs-10_x
+      sbcl
+      clisp
+      lispPackages.quicklisp
+      lispPackages.cl_plus_ssl
+      mitscheme
+    ];
+    sessionVariables.PATH = "/home/dnixty/.local/npm/bin:$PATH";
+  };
   programs.git = {
     enable = true;
     userName = "Dominik Stodolny";

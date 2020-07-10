@@ -1,5 +1,5 @@
-{ config, lib, ... }:
-with lib;
+{ ... }:
+
 let
   hostname = "tyr";
   secrets = import ../secrets.nix;
@@ -8,11 +8,14 @@ in
 {
   imports = [
     ./hardware/x220.nix
-    ./modules
-    (import ../user)
+    ./modules/laptop.nix
+    ./modules/base.nix
+    ./modules/autologin.nix
+    ./modules/desktop.nix
+    ./modules/home.nix
+    ./modules/tor.nix
   ];
   boot = {
-    extraModulePackages = [ config.boot.kernelPackages.wireguard ];
     loader.grub = {
       enable = true;
       version = 2;
@@ -23,16 +26,7 @@ in
         device = "/dev/disk/by-uuid/fbbd0ea1-9839-477b-a47d-0fbe5de5d270";
       };
     };
-    cleanTmpDir = true;
   };
-  profiles = {
-    autologin.enable = true;
-    desktop.enable = true;
-    home.enable = true;
-    laptop.enable = true;
-    tor.enable = true;
-  };
-  time.timeZone = "Europe/London";
   networking = {
     hostName = hostname;
     extraHosts = shared.extraHosts;

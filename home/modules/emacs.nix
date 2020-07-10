@@ -1,4 +1,4 @@
-{ pkgs, emacs, ... }:
+{ pkgs, ... }:
 
 {
   services.emacs.enable = true;
@@ -9,7 +9,6 @@
     enable = true;
     package = pkgs.emacsGit;
     extraPackages = epkgs: with epkgs; [
-      ace-window
       async
       diff-hl
       diminish
@@ -35,8 +34,6 @@
       peep-dired
       prettier-js
       projectile
-      pulseaudio-control
-      restclient
       scratch
       sly
       tide

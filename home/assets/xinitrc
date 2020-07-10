@@ -1,3 +1,0 @@
-xss-lock slock &
-gpg-connect-agent updatestartuptty /bye
-exec startxfce4

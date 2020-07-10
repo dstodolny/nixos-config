@@ -1,5 +1,0 @@
-#!/bin/sh
-
-. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; exec exit; fi
