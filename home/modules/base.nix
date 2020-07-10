@@ -8,7 +8,6 @@
       patchelf
       unzip
       wget
-      pass-otp
       ledger
       niv
       pinentry
@@ -21,7 +20,14 @@
 '';
     };
   };
-  programs.gpg.enable = true;
+  programs = {
+    gpg.enable = true;
+    password-store = {
+      enable = true;
+      package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
+      settings = { PASSWORD_STORE_KEY = "dominik@stodolny.org"; };
+    };
+  };
   services = {
     gpg-agent = {
       enable = true;
@@ -31,5 +37,6 @@
       defaultCacheTtlSsh = 86400;
       maxCacheTtlSsh = 86400;
     };
+    password-store-sync.enable = true;
   };
 }
