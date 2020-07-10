@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 let
-  shared = import ../../shared.nix;
   username = "dnixty";
 in
 {
