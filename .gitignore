@@ -1,3 +1,4 @@
 hostname
 secrets.nix
 hardware-configuration.nix
+config.nix
