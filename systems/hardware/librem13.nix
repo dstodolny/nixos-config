@@ -4,7 +4,7 @@ let
   sources = import ../../nix/sources.nix;
 in
 {
-  imports [
+  imports = [
     (sources.nixos-hardware + "/common/cpu/intel")
     (sources.nixos-hardware + "/common/pc/laptop")
   ];
