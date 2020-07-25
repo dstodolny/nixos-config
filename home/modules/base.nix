@@ -4,14 +4,16 @@
   home = {
     stateVersion = "20.03";
     packages = with pkgs; [
-      transmission
-      patchelf
-      unzip
-      wget
+      file
       ledger
       niv
+      patchelf
       pinentry
       ripgrep
+      transmission
+      unzip
+      wget
+      nix-index
     ];
     file = {
       ".profile".text = ''
