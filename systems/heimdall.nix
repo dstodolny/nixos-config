@@ -27,6 +27,7 @@ in
     };
   };
   networking = {
+    hostName = hostname;
     extraHosts = shared.extraHosts;
     nat = {
       enable = true;
