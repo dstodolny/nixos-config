@@ -7,6 +7,7 @@ let
 in
 {
   imports = [
+    ./modules/base.nix
     ./modules/ssh.nix
   ];
   boot = {
