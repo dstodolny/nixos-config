@@ -15,7 +15,7 @@
       virtualHosts."dnixty.com" = {
         enableACME = true;
         forceSSL = true;
-        root = "/home/dnixty/pub";
+        root = "/var/www/dnixty.com";
       };
     };
   };
