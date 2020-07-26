@@ -18,9 +18,9 @@ Link ~nixos-config~
 sudo ln -s /home/dnixty/nixos-config /etc/nixos
 #+END_SRC
 
-Create ~hostname~ file
+Set hostname
 #+BEGIN_SRC sh
-echo "tyr" > ~/src/nixos-config/hostname
+echo "{ hostname = \"tyr\" };" > secrets.nix
 #+END_SRC
 
 Rebuild NixOS

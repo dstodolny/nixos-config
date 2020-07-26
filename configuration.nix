@@ -1,12 +1,12 @@
 { ... }:
 
 let
-  hostname = "${builtins.readFile ./hostname}";
+  secrets = import ./secrets.nix;
 in
 {
   imports =
     [
       ./hardware-configuration.nix
-      (./systems + "/${hostname}.nix")
+      (./systems + "/${secrets.hostname}.nix")
     ];
 }
