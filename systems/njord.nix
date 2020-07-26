@@ -9,6 +9,7 @@ in
   imports = [
     ./modules/base.nix
     ./modules/ssh.nix
+    ./modules/www.nix
   ];
   boot = {
     cleanTmpDir = true;
