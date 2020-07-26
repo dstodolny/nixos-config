@@ -2,9 +2,10 @@
 
 with lib;
 let
-  shared = ../../shared.nix;
+  shared = import ../../shared.nix;
 in
 {
+  system.stateVersion = "20.03";
   boot.cleanTmpDir = true;
   i18n.defaultLocale = "en_GB.UTF-8";
   security.sudo = {
