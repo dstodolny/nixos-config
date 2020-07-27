@@ -1,17 +1,17 @@
 {
   ports = {
     wireguard = 53898;
-    sshd = 65130;
+    ssh = 65130;
   };
   extraHosts = ''
-    10.206.94.135 njord.vpn.dnixty.com
-    10.206.94.35 tyr.vpn.dnixty.com
-    10.206.94.130 heimdall.vpn.dnixty.com
-    10.206.94.199 hel.vpn.dnixty.com
+    10.206.94.135 njord.vpn
+    10.206.94.35 tyr.vpn
+    10.206.94.130 heimdall.vpn
+    10.206.94.199 hel.vpn
 
-    192.168.1.1 hel.home.dnixty.com
-    192.168.1.18 odin.home.dnixty.com
-    192.168.1.118 thor.home.dnixty.com
+    192.168.1.1 hel.home
+    192.168.1.18 odin.home
+    192.168.1.118 thor.home
 
     45.76.34.183 njord
     192.168.1.18 odin

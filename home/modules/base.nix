@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  shared = import ../../shared.nix;
+in
 {
   home = {
     stateVersion = "20.03";
@@ -23,6 +26,21 @@
     };
   };
   programs = {
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "njord" = {
+          hostname = "njord";
+          user = "dnixty";
+          port = shared.ports.ssh;
+        };
+        "njord.vpn" = {
+          hostname = "njord.vpn";
+          user = "dnixty";
+          port = shared.ports.ssh;
+        };
+      };
+    };
     gpg.enable = true;
     password-store = {
       enable = true;
