@@ -8,6 +8,6 @@ in
     enable = true;
     passwordAuthentication = false;
     permitRootLogin = "no";
-    ports = [ shared.ports.sshd ];
+    ports = [ shared.ports.ssh ];
   };
 }
