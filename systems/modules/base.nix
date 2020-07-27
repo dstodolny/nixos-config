@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 let
@@ -22,4 +22,5 @@ in
                   ++ optionals config.services.xserver.enable ["audio" "video" "lp" "networkmanager"];
     openssh.authorizedKeys.keys = shared.ssh_keys;
   };
+  environment.systemPackages = with pkgs; [ rsync ];
 }
