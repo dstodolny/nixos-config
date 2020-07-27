@@ -18,5 +18,9 @@
         root = "/var/www/dnixty.com";
       };
     };
+    matomo = {
+      enable = true;
+      nginxVirtualHost = "analytics.dnixty.com";
+    };
   };
 }
