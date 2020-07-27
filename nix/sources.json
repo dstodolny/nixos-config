@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "ffa66bbdef0f7cd8cc555b33791522c2d5ad539e",
-        "sha256": "1k5avbc92fynkksrdjkzhj4sl24knajs1sia0l5zrc6lid17cmg0",
+        "rev": "87f85a1c2f3b4c013926f0e2806983e87b5d3b23",
+        "sha256": "1spyqh9blyb3m90aaali69wydqzcrrxrj8gb1pyc3k4aqigjdgqi",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/ffa66bbdef0f7cd8cc555b33791522c2d5ad539e.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/87f85a1c2f3b4c013926f0e2806983e87b5d3b23.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -17,10 +17,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "rycee",
         "repo": "home-manager",
-        "rev": "3f1be6935903c61065f7036f312f574585c9cfe8",
-        "sha256": "0mx38bxnhg1k55rnyidrzngds0wgvxq05qdh3v2basrwdfa153db",
+        "rev": "7b73f840712de88093f6c056e3c658e114ca0b3c",
+        "sha256": "1f4q0sapfm77gzph00rzcppv9kpnwhb856n9n27ff14f6ri59ci3",
         "type": "tarball",
-        "url": "https://github.com/rycee/home-manager/archive/3f1be6935903c61065f7036f312f574585c9cfe8.tar.gz",
+        "url": "https://github.com/rycee/home-manager/archive/7b73f840712de88093f6c056e3c658e114ca0b3c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-hardware": {
@@ -41,10 +41,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "NixOS",
         "repo": "nixpkgs-channels",
-        "rev": "b8c367a7bd05e3a514c2b057c09223c74804a21b",
-        "sha256": "0y17zxhwdw0afml2bwkmhvkymd9fv242hksl3l3xz82gmlg1zks4",
+        "rev": "2b7c0dcdaab946153b0eaba5f2420f15ea27b0d6",
+        "sha256": "03ps33zns0h9ff19g4bn89qaw33n1wfv249jyp95sqj6a002xjwr",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/b8c367a7bd05e3a514c2b057c09223c74804a21b.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/2b7c0dcdaab946153b0eaba5f2420f15ea27b0d6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
