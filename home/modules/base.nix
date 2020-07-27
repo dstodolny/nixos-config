@@ -7,13 +7,13 @@
       file
       ledger
       niv
+      nix-index
       patchelf
       pinentry
       ripgrep
       transmission
       unzip
       wget
-      nix-index
     ];
     file = {
       ".profile".text = ''
