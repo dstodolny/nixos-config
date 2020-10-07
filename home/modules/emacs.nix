@@ -2,40 +2,29 @@
 
 {
   services.emacs.enable = true;
-  home.packages = with pkgs; [
-    poppler_utils
-  ];
   programs.emacs = {
     enable = true;
     package = pkgs.emacsGit;
     extraPackages = epkgs: with epkgs; [
-      async
+      add-node-modules-path
       diff-hl
-      diminish
-      dired-single
-      diredfl
-      esh-autosuggest
+      direnv
+      exec-path-from-shell
       expand-region
       flycheck
-      goto-last-change
+      haskell-mode
+      hl-todo
       ibuffer-vc
       icomplete-vertical
-      ledger-mode
+      lsp-mode
       magit
       modus-operandi-theme
       modus-vivendi-theme
       nix-mode
-      paredit
-      pass
-      password-store
-      password-store-otp
-      pdf-tools
-      prettier-js
+      projectile
+      rainbow-mode
       rg
       scratch
-      sly
-      tide
-      trashed
       use-package
       wgrep
     ];

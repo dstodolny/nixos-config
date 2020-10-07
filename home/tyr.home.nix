@@ -6,6 +6,6 @@
     ./modules/emacs.nix
     ./modules/desktop.nix
     ./modules/dev.nix
-    ./modules/wechall.nix
+    ./modules/work.nix
   ];
 }

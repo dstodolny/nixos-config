@@ -1,54 +1,12 @@
 {
-  ports = {
-    wireguard = 53898;
-    ssh = 65130;
-  };
   extraHosts = ''
-    10.206.94.135 njord.vpn
-    10.206.94.35 tyr.vpn
-    10.206.94.130 heimdall.vpn
-    10.206.94.199 hel.vpn
+    95.179.149.20 hel
 
-    192.168.1.1 hel.home
-    192.168.1.18 odin.home
-    192.168.1.118 thor.home
-
-    45.76.34.183 njord
-    192.168.1.18 odin
-    192.168.1.1 hel
-    192.168.1.118 thor
+    192.168.1.1   heimdall.lan
+    192.168.1.18  njord.lan
+    192.168.1.118 thor.lan
   '';
-  wireguard = {
-    interfaces = {
-      njord.ips = [ "10.206.94.135/24" ];
-      tyr.ips = [ "10.206.94.35/24" ];
-      heimdall.ips = [ "10.206.94.130/24" ];
-      hel.ips = [ "10.206.94.199/24" ];
-    };
-    peers = {
-      njord = {
-        publicKey = "BWHsBdcPZ/88PL+HPko52MgoI8kowMNucpWfpSVPGTA=";
-        allowedIPs = [ "10.206.94.135/32" ];
-        endpoint = "njord.dnixty.com:53898";
-        persistentKeepalive = 25;
-      };
-      tyr = {
-        publicKey = "A0K90dYnmCxMMyjsCMapxAp+y+CtNddDeZ4QOXJ/9mE=";
-        allowedIPs = [ "10.206.94.35/32" ];
-      };
-      heimdall = {
-        publicKey = "gH1cBycyLz5+i/7P023swUA22oIr1MPZCOp/FjHZexA=";
-        allowedIPs = [ "10.206.94.130/32" ];
-      };
-      hel = {
-        publicKey = "bX1DAqr43sW3HrcX+6NtVz+gTt6WwreJI/wrb5tXKls=";
-        allowedIPs = [ "10.206.94.199/32" ];
-        endpoint = "hel.dnixty.com:53898";
-        persistentKeepalive = 25;
-      };
-    };
-  };
   ssh_keys = [
-    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgm5K5x4qnscueCaynv0mtg90SfY61NJW64/mwLCbPRQpQ4wTRJcF1TaDDWMEcFohPLZKaxMJlCQ/4AHHP+WHiVYpV8COfNEkFaLu8mOv68asxcikTO7l6XSQBQvEYtYVUM/nz/Fua/ksYluiWeIA8gJy0tw7DrPaxVqAxi4eo+0qjqs0IPLwsuMb553Ftl989svd8rvBgU3iLmI6r78+wjC4Gv7quzFB1L18LjQY05ZEG5S+q3VqqZin8l37fNP5Na71OwCstILoa50Yppk75j0/pX3c3yvqbT+kKdpWRzgbevcTrLKZuF/abyGP/JvAU6OtCQhrJer3e/qi0MnAX dominik@stodolny.org"
+    "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAA2SW7t8yYyrBgk9/W8AUljQE/lGItboriAptDie6G1nmFYhR+WVrEcBHlLXpe9Q3pD0T27OZKs3t/qv1HLAoF5gwG8Dv7RpnLXJyZzyIhceoRIEqo4YZ2j1nYgSj7BSE+KYWIBVWJrQt+a8OAUOOieaIA48AbdQLIn4h60nlD2+cy8uQ== dnixty@tyr"
   ];
 }

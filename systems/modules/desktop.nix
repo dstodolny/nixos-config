@@ -1,32 +1,19 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   console.useXkbConfig = true;
-  environment.systemPackages = with pkgs; [
-    xss-lock
-  ];
   fonts = {
-    enableDefaultFonts = true;
-    enableFontDir = true;
-    enableGhostscriptFonts = true;
     fonts = with pkgs; [ hack-font ];
   };
   hardware = {
     bluetooth.enable = true;
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-    };
+    pulseaudio.enable = true;
   };
-  programs.slock.enable = true;
   services = {
     blueman.enable = true;
-    picom = {
+    gvfs = {
       enable = true;
-      fade = true;
-      fadeDelta = 4;
-      inactiveOpacity = "0.9";
-      shadow = true;
+      package = lib.mkForce pkgs.gnome3.gvfs;
     };
     printing = {
       enable = true;
@@ -35,8 +22,11 @@
     xserver = {
       enable = true;
       xkbOptions = "ctrl:swapcaps";
-      desktopManager.xfce.enable = true;
-      displayManager.startx.enable = true;
+      displayManager.defaultSession = "xfce";
+      desktopManager = {
+        xterm.enable = false;
+        xfce.enable = true;
+      };
     };
   };
   sound = {

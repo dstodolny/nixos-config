@@ -1,0 +1,41 @@
+#!/bin/sh -e
+# Features:
+# 0. POSIX shell. The only dependency is curl.
+# 1. Supports 4chan and 4plebs threads
+# 2. Tries to save the image under the correct title. Fall backs to the original
+#    filename
+# 3. Extensions can be specified by setting EXTENSIONS variable
+# 4. Saves the images into the directory with the same name as the last part of
+#    the url
+# 5. TODO: Trims very long names
+# 6. TODO: You can run the script multiple times. It'll download only new images.
+# 7. TODO: Install in .local/bin. Make sure your path is correct
+# 8. TODO: Write man page. Install in .local/man
+# 9. TODO: Turn on/off titles
+
+test -z "$1" && { >&2 echo "usage: ${0##*/} thread_url"; exit 1; }
+
+DIR="$(basename $1)"
+EXTENSIONS="(jpg|png)"
+
+if [ -n "$(echo $1 | grep -o '4plebs')" ]; then
+	URL_PATTERN="//archive\.4plebs\.org/dl/[[:alnum:]/]*\.$EXTENSIONS"
+	FILENAME_TAG='download'
+	REGEX=
+elif [ -n "$(echo $1 | grep -o '4chan')" ]; then
+	URL_PATTERN="//[[:alnum:]\.]*(4chan|4cdn)\.org/[[:alnum:]/]*\.$EXTENSIONS"
+	FILENAME_TAG='title'
+else
+	echo "URL not yet supported"
+	exit 1
+fi
+
+mkdir -p $DIR
+
+curl -s "$1" |
+grep -oEi '<a[^>]*href="'"$URL_PATTERN"'"([^>]*)>' |
+sed -E 's/.*href="([^"]*)".*'"$FILENAME_TAG"'="([^"]*)".*/<a '"$FILENAME_TAG"'="\2" href="\1">/g' |
+sed -E '/.*'"$FILENAME_TAG"'=.*/! s/<a(.*\/([[:digit:]]*\.'"$EXTENSIONS"').*)/<a '"$FILENAME_TAG"'="\2"\1/g' |
+sed -E 's/.*'"$FILENAME_TAG"'="([^"]*)".*href="([^"]*)".*/\1	\2/g' | sort | uniq |
+awk -F "\t" '{ print "Downloading: https:" $2; system("FILENAME=\"" $1 "\"; curl -s https:" $2 " > \"'"$DIR"'/" "$(echo \"$(echo \"${FILENAME%%.*}\" | cut -c -200).${FILENAME#*.}\")\"") }' 
+
