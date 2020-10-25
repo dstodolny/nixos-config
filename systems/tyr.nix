@@ -4,6 +4,10 @@ let
   hostname = "tyr";
   secrets = import ../secrets.nix;
   shared = import ../shared.nix;
+  hostsBlacklist = builtins.fetchurl {
+    url = "https://raw.githubusercontent.com/StevenBlack/hosts/750faf4b129f3285cc659d02ce4560fdb7341e8e/alternates/fakenews-gambling-porn/hosts";
+    sha256 = "0wn31kkavg0iy8yfpxmp8xmlnmjid8iv9gav0f6spr3dbl56xdsw";
+  };
 in
 {
   imports = [
@@ -29,6 +33,6 @@ in
   };
   networking = {
     hostName = hostname;
-    extraHosts = shared.extraHosts;
+    extraHosts = (builtins.readFile hostsBlacklist) + shared.extraHosts;
   };
 }
