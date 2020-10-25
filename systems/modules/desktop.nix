@@ -9,6 +9,12 @@
     bluetooth.enable = true;
     pulseaudio.enable = true;
   };
+  programs = {
+    xss-lock = {
+      enable = true;
+      lockerCommand = "${pkgs.lightlocker}/bin/light-locker-command -l";
+    };
+  };
   services = {
     blueman.enable = true;
     gvfs = {
