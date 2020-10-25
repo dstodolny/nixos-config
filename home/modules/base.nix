@@ -55,6 +55,7 @@
         set -gw alternate-screen off
         set -gw automatic-rename on
         set -gw monitor-activity on
+        set -g mouse on
         set -g status-interval 1
         set -g status-left ""
         set -g status-left-length 40
@@ -73,6 +74,7 @@
         set -gw window-status-separator '  '
         set -gw window-status-style fg=default,bg=default
         bind -r C-a send-prefix
+        bind c new-window -c "#{pane_current_path}"
         bind '"' split-window -c "#{pane_current_path}"
         bind % split-window -h -c "#{pane_current_path}"
       '';
