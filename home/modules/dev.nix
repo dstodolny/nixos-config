@@ -3,6 +3,8 @@
 {
   home.packages = with pkgs; [
     direnv
+    ghc
+    stack
   ];
 
   services.lorri.enable = true;
