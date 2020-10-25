@@ -4,12 +4,17 @@
   home = {
     stateVersion = "20.03";
     packages = with pkgs; [
-      niv
+      bc
+      cmus
+      ffmpeg
+      killall
       ledger
+      niv
       pinentry
       ripgrep
       unzip
       wget
+      youtube-dl
     ];
     file = {
       ".local/bin" = {

@@ -3,16 +3,20 @@
 {
   home = {
     packages = with pkgs; [
-      epdfview
       firefox
+      lightlocker
+      mate.atril
       mpv
+      peek
       sxiv
       tdesktop
       thunderbird
       wasabiwallet
+      xdotool
     ];
     file = {
       ".xprofile".text = ''
+          export EDITOR="emacs"
           export PATH="~/.local/bin:$PATH"
         . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
       '';
