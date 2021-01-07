@@ -3,6 +3,7 @@
 {
   home = {
     packages = with pkgs; [
+      megasync
       firefox
       lightlocker
       mate.atril
@@ -13,6 +14,7 @@
       thunderbird
       wasabiwallet
       xdotool
+      stellarium
     ];
     file = {
       ".xprofile".text = ''

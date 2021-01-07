@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
   home = {
     stateVersion = "20.03";
     packages = with pkgs; [
@@ -15,6 +16,7 @@
       unzip
       wget
       youtube-dl
+      unrar
     ];
     file = {
       ".local/bin" = {

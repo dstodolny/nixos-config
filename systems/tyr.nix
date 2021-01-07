@@ -15,6 +15,8 @@ in
     ./modules/laptop.nix
     ./modules/base.nix
     ./modules/desktop.nix
+    ./modules/gaming.nix
+    ./modules/tor.nix
   ];
   boot = {
     loader.grub = {
@@ -33,6 +35,6 @@ in
   };
   networking = {
     hostName = hostname;
-    extraHosts = (builtins.readFile hostsBlacklist) + shared.extraHosts;
+    # extraHosts = (builtins.readFile hostsBlacklist) + shared.extraHosts;
   };
 }
